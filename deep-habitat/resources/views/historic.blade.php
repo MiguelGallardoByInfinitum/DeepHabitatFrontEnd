@@ -1,3 +1,10 @@
+<?php
+// $hola = "Guillem";
+// if($hola != "Guillem"){
+//     header('Location: /');
+//     exit();
+// }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
