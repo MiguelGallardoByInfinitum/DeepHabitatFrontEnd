@@ -7,8 +7,22 @@
     @vite('resources/css/app.css')
 </head>
 <body>
-    <h1 class="text-4xl">HISTORIC</h1>
-    <a href="/">Log Out</a>
-    <a href="/new">New Job</a>
+    <header class="flex justify-between items-center p-7">
+        <h1 class="text-4xl font-bold">HISTORIC</h1>
+        <nav class="flex justify-center items-center gap-5">
+            <a href="/new">New Job</a>
+            <a href="/">Log Out</a>
+        </nav>
+    </header>
+    <div class="flex justify-center items-start flex-col ml-36 mt-10">
+        <h3 class="text-2xl">Jobs</h3>
+        <div class="jobs mt-6">
+            <p>Job 1...</p>
+            <p>Job 2...</p>
+            <p>Job 3...</p>
+            <p>Job 4...</p>
+            <p>Job 5...</p>
+        </div>
+    </div>
 </body>
 </html>
