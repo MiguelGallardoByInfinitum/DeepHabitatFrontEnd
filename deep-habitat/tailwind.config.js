@@ -7,6 +7,10 @@ export default {
   ],
   darkMode: 'selector',
   theme: {
+    colors: {
+      primary: 'rgb(var(--color-primary))',
+      secondary: 'rgb(var(--color-secondary))'
+    },
     extend: {},
   },
   plugins: [],
