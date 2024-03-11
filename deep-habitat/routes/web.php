@@ -20,3 +20,7 @@ Route::get('/', function () {
 Route::get('/historic', function () {
     return view('historic');
 });
+
+Route::post('/post', function () {
+    return redirect('/historic');
+});
