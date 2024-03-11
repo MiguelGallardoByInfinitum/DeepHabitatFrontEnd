@@ -5,6 +5,7 @@
 @layer base {
     :root {
         --color-primary: 222 49 99;
-        --color-secondary: 59 225 22;
+        --color-secondary: 248 249 249;
+        --color-tertiary: 33 47 61;
     }
 }

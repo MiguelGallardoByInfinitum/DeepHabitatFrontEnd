@@ -9,7 +9,8 @@ export default {
   theme: {
     colors: {
       primary: 'rgb(var(--color-primary))',
-      secondary: 'rgb(var(--color-secondary))'
+      secondary: 'rgb(var(--color-secondary))',
+      tertiary: 'rgb(var(--color-tertiary))'
     },
     extend: {},
   },
