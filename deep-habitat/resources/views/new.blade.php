@@ -8,5 +8,6 @@
 </head>
 <body>
     <h1>NEW JOB</h1>
+    <a href="/historic">Click to return to HISTORIC</a>
 </body>
 </html>
