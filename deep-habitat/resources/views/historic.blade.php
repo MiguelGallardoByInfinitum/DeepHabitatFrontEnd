@@ -17,7 +17,7 @@
     <header class="flex justify-between items-center p-7">
         <h1 class="text-4xl font-bold">HISTORIC</h1>
         <nav class="flex justify-center items-center gap-5">
-            <a href="/new" class="bg-">New Job</a>
+            <a href="/new" class="bg-primary text-light p-2 rounded-md drop-shadow-lg">New Job</a>
             <a href="/" class="">Log Out</a>
         </nav>
     </header>
