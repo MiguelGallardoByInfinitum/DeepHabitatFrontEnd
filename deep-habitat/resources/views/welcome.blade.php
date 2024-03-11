@@ -14,9 +14,9 @@
     <hr class="w-44 text-primary">
     <form action={{ url('post') }} method="post" class="flex flex-col justify-center items-center gap-3">
         @csrf
-        <input type="text" id="username" name="username" placeholder="Username here..." class="w-80 h-9 text-lg text-black p-2" required>
-        <input type="password" id="password" name="password" placeholder="Password here..." class="w-80 h-9 text-lg text-black p-2" required>
-        <input type="submit" id="login" name="login" value="Iniciar Sessión" class="mt-2 p-2 w-32 rounded-full cursor-pointer duration-300 hover:-translate-y-1 transition-all bg-primary text-secondary border-2 border-primary hover:bg-secondary hover:text-primary">
+        <input type="text" id="username" name="username" placeholder="Username here..." class="w-80 h-9 text-lg text-primary p-2 bg-secondary rounded-lg border-2 border-tertiary" required>
+        <input type="password" id="password" name="password" placeholder="Password here..." class="w-80 h-9 text-lg text-primary p-2 bg-secondary rounded-lg border-2 border-tertiary" required>
+        <input type="submit" id="login" name="login" value="Iniciar Sessión" class="mt-2 p-2 w-32 rounded-lg cursor-pointer duration-300 hover:-translate-y-1 transition-all bg-primary text-secondary border-2 border-primary hover:bg-secondary hover:text-primary">
     </form>
 </body>
 </html>
