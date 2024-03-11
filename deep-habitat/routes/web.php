@@ -21,6 +21,10 @@ Route::get('/historic', function () {
     return view('historic');
 });
 
+Route::get('/new', function () {
+    return view('new');
+});
+
 Route::post('/post', function () {
     return redirect('/historic');
 });
