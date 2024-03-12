@@ -18,7 +18,7 @@
     <header class="flex justify-between items-center p-7">
         <h1 class="text-4xl font-bold text-primary">Por decidir</h1>
         <nav class="flex justify-center items-center gap-5">
-            <a href="/new" class="bg-primary text-light p-2 rounded-md drop-shadow-lg hover:bg-primary2 hover:-translate-y-1 transition-all duration-300"><i class='bx bx-plus translate-y-0.5'></i> New Job</a>
+            <a href="/new" class="bg-primary text-light p-2 rounded-md drop-shadow-lg hover:bg-primary2 hover:-translate-y-1 transition-all duration-300 select-none"><i class='bx bx-plus translate-y-0.5'></i> New Job</a>
             <a href="/" class="hover:-translate-y-1 transition-transform duration-300">Log Out</a>
         </nav>
     </header>
@@ -27,7 +27,7 @@
         <div class="w-[100%] jobs mt-6">
             <div class="w-auto flex justify-between m-2">
                 <p>Job 1...</p>
-                <button>Descargar CSV</button>
+                <button class="">Descargar CSV</button>
             </div>
             <div class="w-auto flex justify-between m-2">
                 <p>Job 2...</p>
