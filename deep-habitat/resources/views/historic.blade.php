@@ -27,7 +27,7 @@
         <div class="w-full jobs mt-6">
             <div class="job">
                 <p class="job-text">Job 1...</p>
-                <button class="job-btn">Descargar CSV</button>
+                <button class="job-btn text-xl group"><i class='bx bxs-cloud-download translate-y-0.5 group-hover:animate-bounce'></i> Download</button>
             </div>
             <div class="job">
                 <p class="job-text">Job 2...</p>

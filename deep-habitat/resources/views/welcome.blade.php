@@ -10,7 +10,7 @@
     <h1 class="text-3xl font-bold capitalize drop-shadow-md shadow-red-200 text-primary">
     Sign in to your account
     </h1>
-    <p class='text-1xl text-tertiary'>DeepHabitat API</p>
+    <p class='text-1xl text-dark'>DeepHabitat API</p>
     <hr class="w-44 text-primary">
     <form action={{ url('post') }} method="post" class="flex flex-col justify-center items-center gap-3">
         @csrf

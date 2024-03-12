@@ -14,7 +14,8 @@ export default {
       secondary: 'rgb(var(--color-secondary))',
       tertiary: 'rgb(var(--color-tertiary))',
       light: 'rgb(var(--color-light))',
-      dark: 'rgb(var(--color-dark))'
+      dark: 'rgb(var(--color-dark))',
+      gray: 'rgb(var(--color-gray))'
     },
     extend: {},
   },
