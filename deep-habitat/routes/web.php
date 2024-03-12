@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,12 @@ Route::get('/new', function () {
     return view('new');
 });
 
-Route::post('/post', function () {
+Route::get('/usuarios', [UserController::class, 'mostrarUsuarios']);
+
+Route::post('/post', function (UserController $userController) {
+    $usuarios = $userController->mostrarUsuarios();
+
+    if($usuarios->username == $_POST['username'] && $usuarios->password == $_POST['password'])
+
     return redirect('/historic');
 });
