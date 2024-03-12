@@ -9,6 +9,8 @@ export default {
   theme: {
     colors: {
       primary: 'rgb(var(--color-primary))',
+      primary2: 'rgb(var(--color-primary2))',
+      primarySelection: 'rgb(var(--color-primarySelection))',
       secondary: 'rgb(var(--color-secondary))',
       tertiary: 'rgb(var(--color-tertiary))',
       light: 'rgb(var(--color-light))',

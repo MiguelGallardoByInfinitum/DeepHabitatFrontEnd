@@ -6,7 +6,7 @@
   <title>Login</title>
   @vite('resources/css/app.css')
 </head>
-<body class="min-h-screen flex justify-center items-center flex-col gap-5 selection:bg-red-400 selection:text-white bg-secondary">
+<body class="min-h-screen flex justify-center items-center flex-col gap-5 selection:bg-red-400 selection:text-light selection:bg-primarySelection bg-secondary">
     <h1 class="text-3xl font-bold capitalize drop-shadow-md shadow-red-200 text-primary">
         Iniciar Session
     </h1>
