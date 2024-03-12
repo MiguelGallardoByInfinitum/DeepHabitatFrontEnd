@@ -27,23 +27,23 @@
         <div class="w-full jobs mt-6">
             <div class="job">
                 <p class="job-text">Job 1...</p>
-                <button class="job-btn text-xl group"><i class='bx bxs-cloud-download translate-y-0.5 group-hover:animate-bounce'></i> Download</button>
+                <button class="job-btn"><i class='bx bxs-cloud-download translate-y-0.5'></i> Download</button>
             </div>
             <div class="job">
                 <p class="job-text">Job 2...</p>
-                <button class="job-btn">Descargar CSV</button>
+                <button class="job-btn"><i class='bx bxs-cloud-download translate-y-0.5'></i> Download</button>
             </div>
             <div class="job">
                 <p class="job-text">Job 3...</p>
-                <button class="job-btn">Descargar CSV</button>
+                <button class="job-btn"><i class='bx bxs-cloud-download translate-y-0.5'></i> Download</button>
             </div>
             <div class="job">
                 <p class="job-text">Job 4...</p>
-                <button class="job-btn">Descargar CSV</button>
+                <button class="job-btn"><i class='bx bxs-cloud-download translate-y-0.5'></i> Download</button>
             </div>
             <div class="job">
                 <p class="job-text">Job 5...</p>
-                <button class="job-btn">Descargar CSV</button>
+                <button class="job-btn"><i class='bx bxs-cloud-download translate-y-0.5'></i> Download</button>
             </div>
         </div>
     </div>
