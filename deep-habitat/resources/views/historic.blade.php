@@ -24,26 +24,26 @@
     </header>
     <div class="flex justify-center items-start flex-col mr-36 ml-36 mt-10">
         <h3 class="text-2xl">HISTÓRICO</h3>
-        <div class="w-[100%] jobs mt-6">
-            <div class="w-auto flex justify-between m-2">
-                <p>Job 1...</p>
-                <button class="">Descargar CSV</button>
+        <div class="w-full jobs mt-6">
+            <div class="job">
+                <p class="job-text">Job 1...</p>
+                <button class="job-btn">Descargar CSV</button>
             </div>
-            <div class="w-auto flex justify-between m-2">
-                <p>Job 2...</p>
-                <button>Descargar CSV</button>
+            <div class="job">
+                <p class="job-text">Job 2...</p>
+                <button class="job-btn">Descargar CSV</button>
             </div>
-            <div class="w-auto flex justify-between m-2">
-                <p>Job 3...</p>
-                <button>Descargar CSV</button>
+            <div class="job">
+                <p class="job-text">Job 3...</p>
+                <button class="job-btn">Descargar CSV</button>
             </div>
-            <div class="w-auto flex justify-between m-2">
-                <p>Job 4...</p>
-                <button>Descargar CSV</button>
+            <div class="job">
+                <p class="job-text">Job 4...</p>
+                <button class="job-btn">Descargar CSV</button>
             </div>
-            <div class="w-auto flex justify-between m-2">
-                <p>Job 5...</p>
-                <button>Descargar CSV</button>
+            <div class="job">
+                <p class="job-text">Job 5...</p>
+                <button class="job-btn">Descargar CSV</button>
             </div>
         </div>
     </div>

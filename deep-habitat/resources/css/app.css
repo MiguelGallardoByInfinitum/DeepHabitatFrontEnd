@@ -8,8 +8,20 @@
         --color-primary2: 156 43 76;
         --color-primarySelection: 255 120 159;
         --color-secondary: 248 249 249;
-        --color-tertiary: 33 47 61;
+        --color-tertiary: 191 5 107;
         --color-light: 255 255 255;
         --color-dark: 0 0 0;
     }
+}
+
+.job {
+    @apply w-auto flex justify-between p-2 border-b-[1px] last:border-b-0;
+}
+
+.job-text {
+    @apply text-lg font-semibold;
+}
+
+.job-btn {
+    @apply bg-tertiary text-light p-1 rounded-md;
 }
