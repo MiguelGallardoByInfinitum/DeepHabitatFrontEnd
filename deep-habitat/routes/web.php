@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Models\User;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,12 +28,19 @@ Route::get('/new', function () {
     return view('new');
 });
 
-Route::get('/usuarios', [UserController::class, 'mostrarUsuarios']);
+Route::post('/post', function (Request $request, UserController $userController) {
+    $username = $request->input('username');
+    $password = $request->input('password');
 
-Route::post('/post', function (UserController $userController) {
-    $usuarios = $userController->mostrarUsuarios();
+    $usuarios =  $userController->mostrarUsuarios();
 
-    if($usuarios->username == $_POST['username'] && $usuarios->password == $_POST['password'])
-
-    return redirect('/historic');
+    foreach ($usuarios['usuarios'] as $usuario) {
+        $usernameDB = $usuario->username;
+        $passwordDB = $usuario->password;
+    
+        if($usernameDB == $username && $passwordDB == $password){
+            info('Funciona');
+            return redirect('/historic');
+        }
+    }
 });

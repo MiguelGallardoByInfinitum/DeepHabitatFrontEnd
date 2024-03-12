@@ -9,8 +9,7 @@ class UserController extends Controller
     public function mostrarUsuarios()
     {
         $usuarios = User::all();
-        info($usuarios);
-        return view('usuarios', ['usuarios' => $usuarios]);
+        return ['usuarios' => $usuarios];
     }
 }
 

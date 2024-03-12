@@ -10,6 +10,6 @@ CREATE TABLE IF NOT EXISTS users(
     password VARCHAR(255)
 );
 
-INSERT INTO users (username, password) VALUES ('Miguel', 'Chimpy');
+INSERT INTO users (username, password) VALUES ('Guillem', 'gurex');
 
 SELECT * FROM users;
