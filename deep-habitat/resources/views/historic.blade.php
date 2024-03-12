@@ -18,30 +18,30 @@
     <header class="flex justify-between items-center p-7">
         <h1 class="text-4xl font-bold text-primary">Por decidir</h1>
         <nav class="flex justify-center items-center gap-5">
-            <a href="/new" class="bg-primary text-light p-2 rounded-md drop-shadow-lg hover:bg-primary2 hover:-translate-y-1 transition-all duration-300 select-none"><i class='bx bx-plus translate-y-0.5'></i> New Job</a>
+            <a href="/new" class="bg-primary text-light p-2 rounded-md drop-shadow-lg hover:-translate-y-1 transition-all duration-300 select-none"><i class='bx bx-plus translate-y-0.5'></i> New Job</a>
             <a href="/" class="hover:-translate-y-1 transition-transform duration-300">Log Out</a>
         </nav>
     </header>
     <div class="flex justify-center items-start flex-col mr-36 ml-36 mt-10">
-        <h3 class="text-2xl">HISTÓRICO</h3>
+        <h3 class="text-2xl">All Jobs</h3>
         <div class="w-full jobs mt-6">
-            <div class="job">
-                <p class="job-text">Job 1...</p>
+            <div class="job group">
+                <p class="job-text">Aqui que se supone que pone?</p>
                 <button class="job-btn"><i class='bx bxs-cloud-download translate-y-0.5'></i> Download</button>
             </div>
-            <div class="job">
+            <div class="job group">
                 <p class="job-text">Job 2...</p>
                 <button class="job-btn"><i class='bx bxs-cloud-download translate-y-0.5'></i> Download</button>
             </div>
-            <div class="job">
+            <div class="job group">
                 <p class="job-text">Job 3...</p>
                 <button class="job-btn"><i class='bx bxs-cloud-download translate-y-0.5'></i> Download</button>
             </div>
-            <div class="job">
+            <div class="job group">
                 <p class="job-text">Job 4...</p>
                 <button class="job-btn"><i class='bx bxs-cloud-download translate-y-0.5'></i> Download</button>
             </div>
-            <div class="job">
+            <div class="job group">
                 <p class="job-text">Job 5...</p>
                 <button class="job-btn"><i class='bx bxs-cloud-download translate-y-0.5'></i> Download</button>
             </div>
