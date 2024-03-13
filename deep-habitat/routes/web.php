@@ -58,4 +58,5 @@ Route::post('/insertar', function (Request $request, JobController $jobControlle
     $url = $request->input('url');
 
     $jobController->insertarJob($name, $url);
+    return redirect('/jobs');
 });
