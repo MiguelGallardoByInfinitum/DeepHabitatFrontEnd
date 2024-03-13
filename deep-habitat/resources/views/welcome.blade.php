@@ -12,7 +12,7 @@
     </h1>
     <p class='text-1xl text-dark'>DeepHabitat API</p>
     <hr class="w-44 text-primary">
-    <form action={{ url('post') }} method="post" class="flex flex-col justify-center items-center gap-3">
+    <form action={{ url('login') }} method="post" class="flex flex-col justify-center items-center gap-3">
         @csrf
         <input type="text" id="username" name="username" placeholder="Username here..." class="w-80 h-9 text-md text-primary p-2 bg-secondary rounded-lg drop-shadow-md focus:outline-none" required>
         <input type="password" id="password" name="password" placeholder="Password here..." class="w-80 h-9 text-md text-primary p-2 bg-secondary rounded-lg drop-shadow-md focus:outline-none" required>

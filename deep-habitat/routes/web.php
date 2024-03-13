@@ -30,7 +30,7 @@ Route::get('/new', function () {
     return view('new');
 });
 
-Route::post('/post', function (Request $request, UserController $userController) {
+Route::post('/login', function (Request $request, UserController $userController) {
     $username = $request->input('username');
     $password = $request->input('password');
     info($username);
@@ -51,4 +51,11 @@ Route::post('/post', function (Request $request, UserController $userController)
     }
 
     return redirect('/');
+});
+
+Route::post('/insertar', function (Request $request, JobController $jobController) {
+    $name = $request->input('name');
+    $url = $request->input('url');
+
+    $jobController->insertarJob($name, $url);
 });
