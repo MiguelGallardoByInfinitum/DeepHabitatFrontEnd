@@ -46,6 +46,7 @@ Route::post('/login', function (Request $request, UserController $userController
         info($passwordDB);
     
         if($usernameDB == $username && $passwordDB == $password){
+            Session::put('username', $username);
             return redirect('/historic');
         }
     }
@@ -54,9 +55,13 @@ Route::post('/login', function (Request $request, UserController $userController
 });
 
 Route::post('/insertar', function (Request $request, JobController $jobController) {
+
     $name = $request->input('name');
+    if($name == '') $name = 'Job';
+    
     $url = $request->input('url');
 
     $jobController->insertarJob($name, $url);
+
     return redirect('/jobs');
 });

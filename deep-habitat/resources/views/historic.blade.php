@@ -16,7 +16,7 @@
 </head>
 <body class="selection:text-light selection:bg-primarySelection">
     <header class="flex justify-between items-center p-7">
-        <h1 class="text-4xl font-bold text-primary">Por decidir</h1>
+        <h1 class="text-4xl font-bold text-primary">{{ Session::get('username') }}</h1>
         <nav class="flex justify-center items-center gap-5">
             <a href="/new" class="bg-primary text-light p-2 rounded-md drop-shadow-lg hover:-translate-y-1 transition-all duration-300 select-none"><i class='bx bx-plus translate-y-0.5'></i> New Job</a>
             <a href="/" class="hover:-translate-y-1 transition-transform duration-300">Log Out</a>

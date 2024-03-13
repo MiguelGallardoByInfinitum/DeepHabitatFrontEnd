@@ -10,7 +10,6 @@
 <body class="overflow-hidden">
     <h1>NEW JOB</h1>
     <a href="/historic" class="bg-primary p-2 rounded-md text-secondary"><i class='bx bx-arrow-back'></i> Go back</a>
-    <!-- <h1 class="text-primary text-[50em] absolute -top-[20%] left-[40%] p-0 m-0">6</h1> -->
     <form action={{ url('insertar') }} method="post">
         @csrf
         <input type="text" name="name" placeholder="Name (Default is 'Job')">
