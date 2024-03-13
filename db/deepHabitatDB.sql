@@ -3,6 +3,7 @@ CREATE DATABASE IF NOT EXISTS deepHabitatDB;
 USE deepHabitatDB;
 
 -- DROP TABLE IF EXISTS users;
+-- DROP TABLE IF EXISTS jobs;
 
 CREATE TABLE IF NOT EXISTS users(
 	id			BINARY(16) PRIMARY KEY DEFAULT (UUID_TO_BIN(UUID())),
@@ -19,7 +20,7 @@ CREATE TABLE IF NOT EXISTS jobs(
 INSERT INTO users (username, password) VALUES ('Miguel', 'chimpy');
 INSERT INTO users (username, password) VALUES ('Guillem', 'gurex');
 
-INSERT INTO jobs (name, url) VALUES ('Job', 'http://127.0.0.1:8000/historic');
+INSERT INTO jobs (name, url) VALUES ('Job', 'http://127.0.0.1:8000/new');
 INSERT INTO jobs (name, url) VALUES ('Pero tio que increible', 'http://127.0.0.1:8000');
 
 SELECT * FROM users;
