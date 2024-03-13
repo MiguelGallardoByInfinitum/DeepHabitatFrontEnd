@@ -26,7 +26,7 @@ if(!Session::has('username')) {
     <div class="flex justify-center items-start flex-col mr-36 ml-36 mt-10">
         <h3 class="text-2xl">Historic</h3>
         <div class="w-full jobs mt-6 mb-32">
-            @foreach($jobs as $job)
+            @foreach($jobs->reverse() as $job)
                 <div class="job group" data-aos="fade-up">
                     <p class="job-text">{{ $job->id }}. {{ $job->name }}</p>
                     <a class="job-btn" href={{ $job->url }}><i class='bx bxs-cloud-download translate-y-0.5'></i> Download</a>
