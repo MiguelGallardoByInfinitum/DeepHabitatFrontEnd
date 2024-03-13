@@ -8,9 +8,12 @@
     @vite('resources/css/app.css')
 </head>
 <body class="overflow-hidden">
-    <h1>NEW JOB</h1>
-    <a href="/historic" class="bg-primary p-2 rounded-md text-secondary"><i class='bx bx-arrow-back'></i> Go back</a>
-    <form action={{ url('insertar') }} method="post">
+    <header class="p-7">
+    <a href="/jobs" class="bg-primary p-2 rounded-md text-secondary group"><i class='bx bx-arrow-back group-hover:-translate-x-1 transition-all duration-300'></i> Go back</a>
+    <h1 class="text-4xl mt-7 font-medium">NEW JOB</h1>
+    </header>
+    
+    <form action={{ url('insertar') }} method="post" class="new-job-form">
         @csrf
         <input type="text" name="name" placeholder="Name (Default is 'Job')">
         <input type="url" name="url" placeholder="URL" required>

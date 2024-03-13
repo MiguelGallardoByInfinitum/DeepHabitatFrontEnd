@@ -26,3 +26,7 @@
 .job-btn {
     @apply bg-primary text-light p-1 rounded-md hover:scale-105 transition-all duration-300;
 }
+
+.new-job-form {
+    @apply w-auto flex justify-between p-7 bg-primary
+}
