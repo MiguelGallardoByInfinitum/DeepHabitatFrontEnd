@@ -17,12 +17,12 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
+Route::get('/login', function () {
     Session::forget('username');
     return view('welcome');
 });
 
-Route::get('/jobs', [JobController::class, 'mostrarJobs']);
+Route::get('/', [JobController::class, 'mostrarJobs']);
 
 Route::get('/new', function () {
     return view('new');
@@ -46,11 +46,11 @@ Route::post('/login', function (Request $request, UserController $userController
         if($usernameDB == $username && $passwordDB == $password){
             Session::put('username', $username);
             info("Session");
-            return redirect('/jobs');
+            return redirect('/');
         }
     }
 
-    return redirect('/');
+    return redirect('/login');
 });
 
 Route::post('/insertar', function (Request $request, JobController $jobController) {
@@ -62,5 +62,5 @@ Route::post('/insertar', function (Request $request, JobController $jobControlle
 
     $jobController->insertarJob($name, $url);
 
-    return redirect('/jobs');
+    return redirect('/');
 });
