@@ -33,15 +33,22 @@ Route::get('/new', function () {
 Route::post('/post', function (Request $request, UserController $userController) {
     $username = $request->input('username');
     $password = $request->input('password');
+    info($username);
+    info($password);
 
     $usuarios =  $userController->obtenerUsuarios();
+    info($usuarios);
 
     foreach ($usuarios['usuarios'] as $usuario) {
         $usernameDB = $usuario->username;
         $passwordDB = $usuario->password;
+        info($usernameDB);
+        info($passwordDB);
     
         if($usernameDB == $username && $passwordDB == $password){
             return redirect('/historic');
         }
     }
+
+    return redirect('/');
 });

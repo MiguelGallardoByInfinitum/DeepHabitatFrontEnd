@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Historic</title>
+    <title>Jobs</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     @vite('resources/css/app.css')
 </head>
@@ -16,7 +16,7 @@
         </nav>
     </header>
     <div class="flex justify-center items-start flex-col mr-36 ml-36 mt-10">
-        <h3 class="text-2xl">All Jobs</h3>
+        <h3 class="text-2xl">Historic</h3>
         <div class="w-full jobs mt-6">
             @foreach($jobs as $job)
                 <div class="job group">
@@ -24,26 +24,6 @@
                     <a href={{ $job->url }} class="job-btn"><i class='bx bxs-cloud-download translate-y-0.5'></i> Download</a>
                 </div>
             @endforeach
-            <div class="job group">
-                <p class="job-text">Aqui que se supone que pone?</p>
-                <button class="job-btn"><i class='bx bxs-cloud-download translate-y-0.5'></i> Download</button>
-            </div>
-            <div class="job group">
-                <p class="job-text">Job 2...</p>
-                <button class="job-btn"><i class='bx bxs-cloud-download translate-y-0.5'></i> Download</button>
-            </div>
-            <div class="job group">
-                <p class="job-text">Job 3...</p>
-                <button class="job-btn"><i class='bx bxs-cloud-download translate-y-0.5'></i> Download</button>
-            </div>
-            <div class="job group">
-                <p class="job-text">Job 4...</p>
-                <button class="job-btn"><i class='bx bxs-cloud-download translate-y-0.5'></i> Download</button>
-            </div>
-            <div class="job group">
-                <p class="job-text">Job 5...</p>
-                <button class="job-btn"><i class='bx bxs-cloud-download translate-y-0.5'></i> Download</button>
-            </div>
         </div>
     </div>
 </body>
