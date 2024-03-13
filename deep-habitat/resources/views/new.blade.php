@@ -23,7 +23,8 @@ if(!Session::has('username')) {
     <form action={{ url('insertar') }} method="post" class="new-job-form">
         @csrf
         <input type="text" name="name" placeholder="Name (Default is 'Job')">
-        <input type="url" name="url" placeholder="URL" required>
+        <!-- <input type="url" name="url" placeholder="URL" required> -->
+        <input type="file" name="" id="" accept=".csv, .xlsx">
         <input type="submit" name="insertar" value="Create Job">
     </form>
 </body>

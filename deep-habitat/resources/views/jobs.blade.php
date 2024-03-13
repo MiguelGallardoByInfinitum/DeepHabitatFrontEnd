@@ -12,6 +12,7 @@ if(!Session::has('username')) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jobs</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     @vite('resources/css/app.css')
 </head>
 <body class="selection:text-light selection:bg-primarySelection">
@@ -24,14 +25,19 @@ if(!Session::has('username')) {
     </header>
     <div class="flex justify-center items-start flex-col mr-36 ml-36 mt-10">
         <h3 class="text-2xl">Historic</h3>
-        <div class="w-full jobs mt-6">
+        <div class="w-full jobs mt-6 mb-32">
             @foreach($jobs as $job)
-                <div class="job group">
+                <div class="job group" data-aos="fade-up">
                     <p class="job-text">{{ $job->id }}. {{ $job->name }}</p>
-                    <a href={{ $job->url }} class="job-btn"><i class='bx bxs-cloud-download translate-y-0.5'></i> Download</a>
+                    <a class="job-btn" href={{ $job->url }}><i class='bx bxs-cloud-download translate-y-0.5'></i> Download</a>
                 </div>
             @endforeach
         </div>
     </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 </html>
