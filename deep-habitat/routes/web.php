@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use App\Models\User;
+use App\Http\Controllers\JobController;
 use Illuminate\Http\Request;
 
 /*
@@ -24,6 +24,8 @@ Route::get('/historic', function () {
     return view('historic');
 });
 
+Route::get('/jobs', [JobController::class, 'mostrarJobs']);
+
 Route::get('/new', function () {
     return view('new');
 });
@@ -32,14 +34,13 @@ Route::post('/post', function (Request $request, UserController $userController)
     $username = $request->input('username');
     $password = $request->input('password');
 
-    $usuarios =  $userController->mostrarUsuarios();
+    $usuarios =  $userController->obtenerUsuarios();
 
     foreach ($usuarios['usuarios'] as $usuario) {
         $usernameDB = $usuario->username;
         $passwordDB = $usuario->password;
     
         if($usernameDB == $username && $passwordDB == $password){
-            info('Funciona');
             return redirect('/historic');
         }
     }
