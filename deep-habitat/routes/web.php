@@ -22,10 +22,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/historic', function () {
-    return view('historic');
-});
-
 Route::get('/jobs', [JobController::class, 'mostrarJobs']);
 
 Route::get('/new', function () {

@@ -1,3 +1,10 @@
+<?php
+use Illuminate\Support\Facades\Session;
+if(!Session::has('username')) {
+    header('Location: /');
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
