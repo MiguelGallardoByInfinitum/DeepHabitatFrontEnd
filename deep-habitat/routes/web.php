@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', function () {
+    Session::forget('username');
     return view('welcome');
 });
 
@@ -47,6 +48,7 @@ Route::post('/login', function (Request $request, UserController $userController
     
         if($usernameDB == $username && $passwordDB == $password){
             Session::put('username', $username);
+            info("Session");
             return redirect('/jobs');
         }
     }
