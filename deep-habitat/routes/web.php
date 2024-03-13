@@ -47,7 +47,7 @@ Route::post('/login', function (Request $request, UserController $userController
     
         if($usernameDB == $username && $passwordDB == $password){
             Session::put('username', $username);
-            return redirect('/historic');
+            return redirect('/jobs');
         }
     }
 
