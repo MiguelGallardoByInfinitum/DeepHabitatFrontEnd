@@ -20,8 +20,8 @@ CREATE TABLE IF NOT EXISTS jobs(
 INSERT INTO users (username, password) VALUES ('Miguel', 'chimpy');
 INSERT INTO users (username, password) VALUES ('Guillem', 'gurex');
 
-INSERT INTO jobs (name, url) VALUES ('Job', 'http://127.0.0.1:8000/new');
-INSERT INTO jobs (name, url) VALUES ('Pero tio que increible', 'http://127.0.0.1:8000');
+-- INSERT INTO jobs (name, url) VALUES ('Job', 'http://127.0.0.1:8000/new');
+-- INSERT INTO jobs (name, url) VALUES ('Pero tio que increible', 'http://127.0.0.1:8000');
 
 SELECT * FROM users;
 SELECT * FROM jobs;
