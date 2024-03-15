@@ -15,7 +15,7 @@ if(!Session::has('username')) {
     @vite('resources/css/app.css')
 </head>
 <body class="overflow-hidden h-[100vh] flex items-center justify-center">
-    <header class="p-7 absolute top-0 left-6">
+    <header class="sm:p-7 pt-7 absolute top-0 left-6 p-0">
         <a href="/" class="bg-primary p-2 rounded-md text-secondary group"><i class='bx bx-arrow-back group-hover:-translate-x-1 transition-all duration-300'></i> Go back</a>
         <h1 class="text-4xl mt-7 font-medium">NEW JOB</h1>
     </header>

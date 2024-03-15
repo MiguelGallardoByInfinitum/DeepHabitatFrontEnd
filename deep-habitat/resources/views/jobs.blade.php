@@ -30,6 +30,7 @@ if(!Session::has('username')) {
                 <div class="job group" data-aos="fade-up">
                     <p class="job-text">{{ $job->id }}. {{ $job->name }}</p>
                     <a class="job-btn" href={{ $job->url }}><i class='bx bxs-cloud-download translate-y-0.5'></i> Download</a>
+                    <a class="job-btn" href={{ $job->url }}><i class='bx bx-loader-alt motion-reduce:hidden animate-spin'></i> In progress</a>
                 </div>
             @endforeach
         </div>
