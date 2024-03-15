@@ -24,7 +24,6 @@ if(!Session::has('username')) {
         <form action={{ url('insertar') }} method="post" enctype="multipart/form-data" class="new-job-form h-96">
             @csrf
             <input type="text" name="name" placeholder="Job Name (Default is 'Job')" class="w-80 h-10 text-md text-primary p-2 bg-secondary rounded-lg focus:outline-none border-[1px] border-primary2">
-            <!-- <input type="url" name="url" placeholder="URL" required> -->
             <div>
                 <label class="text-dark text-xs opacity-60">Enter your csv or xlsx here</label>
                 <input type="file" name="file" accept=".csv, .xlsx" required class="text-primary2 file:text-primary file:bg-primaryShaded file:border-0 file: file:rounded-lg file:py-2 file:px-4 file:font-semibold file:text-sm transition-all duration-300 cursor-pointer file:hover:opacity-70 mt-2 file:cursor-pointer">
