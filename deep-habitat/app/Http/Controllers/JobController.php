@@ -25,6 +25,11 @@ class JobController extends Controller
 
         return redirect('/');
     }
+
+    public function getJob()
+    {
+        
+    }
 }
 
 ?>
