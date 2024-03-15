@@ -30,6 +30,7 @@ if(!Session::has('username')) {
                 <div class="job group" data-aos="fade-up">
                     <p class="job-text">{{ $job->id }}. {{ $job->name }}</p>
                     <form action={{ url('download') }} method="post">
+                    @csrf
                         <input type="hidden" name="petition_id" value={{ $job->petition_id }}>
                         <button class="job-btn" type="submit" name="download"><i class='bx bxs-cloud-download translate-y-0.5'></i> Download</button> 
                     </form>
