@@ -97,6 +97,10 @@ Route::post('/download', function (Request $request, JobController $getJob) {
     if ($response->successful()) {
         // La solicitud fue exitosa, puedes trabajar con la respuesta
         $datosRespuesta = $response->json();
+        $status = $datosRespuesta['response']['status'];
+        if($status == 'DONE') {
+            $enhancedDataUrls = $datosRespuesta['response']['enhanced_data_urls'];
+        }
         info('Datos: ' . json_encode($datosRespuesta));
     } else {
         // La solicitud no fue exitosa, maneja el error
@@ -104,4 +108,6 @@ Route::post('/download', function (Request $request, JobController $getJob) {
         // Haz algo con el mensaje de error
         info('Error: ' . $mensajeError);
     }
+
+    return redirect('/');
 });
