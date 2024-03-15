@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
+use Illuminate\Support\Facades\Http;
 
 class JobController extends Controller
 {
@@ -12,13 +13,14 @@ class JobController extends Controller
         return view('jobs', ['jobs' => $jobs]);
     }
 
-    public function insertarJob($name, $url)
+    public function insertarJob($name, $petition_id)
     {
-        $job = new Job();
-        $job->name = $name;
-        $job->url = $url;
+        
+        // $job = new Job();
+        // $job->name = $name;
+        
 
-        $job->save();
+        // $job->save();
 
         return redirect('/');
     }

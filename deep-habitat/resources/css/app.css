@@ -28,5 +28,5 @@
 }
 
 .new-job-form {
-    @apply w-auto flex justify-between p-7 bg-primary
+    @apply w-auto flex justify-center items-center flex-col gap-5 p-7 bg-primary w-96
 }

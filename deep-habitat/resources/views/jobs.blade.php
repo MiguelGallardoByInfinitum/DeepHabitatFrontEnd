@@ -23,7 +23,7 @@ if(!Session::has('username')) {
             <a href="/login" class="hover:-translate-y-1 transition-transform duration-300">Log Out</a>
         </nav>
     </header>
-    <div class="flex justify-center items-start flex-col mr-36 ml-36 mt-10">
+    <div class="flex justify-center items-start flex-col mr-7 ml-7 sm:mr-14 sm:ml-14 md:mr-36 md:ml-36 mt-10">
         <h3 class="text-2xl">Historic</h3>
         <div class="w-full jobs mt-6 mb-32">
             @foreach($jobs->reverse() as $job)
