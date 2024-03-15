@@ -23,21 +23,21 @@ if(!Session::has('username')) {
     <div class="">
         <form action={{ url('insertar') }} method="post" enctype="multipart/form-data" class="new-job-form h-96">
             @csrf
-            <input type="text" name="name" placeholder="Name (Default is 'Job')" class="w-80 h-9 text-md text-primary p-2 bg-secondary rounded-lg drop-shadow-md focus:outline-none">
+            <input type="text" name="name" placeholder="Job Name (Default is 'Job')" class="w-80 h-10 text-md text-primary p-2 bg-secondary rounded-lg focus:outline-none border-[1px] border-primary2">
             <!-- <input type="url" name="url" placeholder="URL" required> -->
             <div>
-                <input type="file" name="file" accept=".csv, .xlsx" required>
-                <label class="text-light text-xs">Enter your csv or xlsx here</label>
+                <label class="text-dark text-xs opacity-60">Enter your csv or xlsx here</label>
+                <input type="file" name="file" accept=".csv, .xlsx" required class="text-primary2 file:text-primary file:bg-primaryShaded file:border-0 file: file:rounded-lg file:py-2 file:px-4 file:font-semibold file:text-sm transition-all duration-300 cursor-pointer file:hover:opacity-70 mt-2 file:cursor-pointer">
             </div>
             <div>
-                <input type="file" name="category" accept="">
-                <label class="text-light text-xs">Enter the category taxonomy for your file (optional)</label>
+                <label class="text-dark text-xs opacity-60">Enter the category taxonomy for your file (optional)</label>
+                <input type="file" name="category" accept="" class="text-primary2 file:text-primary file:bg-primaryShaded file:border-0 file: file:rounded-lg file:py-2 file:px-4 file:font-semibold file:text-sm transition-all duration-300 cursor-pointer file:hover:opacity-70 mt-2 file:cursor-pointer">
             </div>
             <div>
-                <input type="file" name="attribute" accept="">
-                <label class="text-light text-xs">Enter the attribute taxonomy for your file (optional)</label>
+                <label class="text-dark text-xs opacity-60">Enter the attribute taxonomy for your file (optional)</label>
+                <input type="file" name="attribute" accept="" class="text-primary2 file:text-primary file:bg-primaryShaded file:border-0 file: file:rounded-lg file:py-2 file:px-4 file:font-semibold file:text-sm transition-all duration-300 cursor-pointer file:hover:opacity-70 mt-2 file:cursor-pointer">
             </div>
-            <input type="submit" name="insertar" value="Create Job" class="cursor-pointer bg-primary p-2 rounded-lg border-light border-2 text-light hover:-translate-y-1 hover:bg-light hover:border-primary hover:text-primary transition-all duration-300">
+            <input type="submit" name="insertar" value="Create Job" class="cursor-pointer bg-primary p-2 rounded-lg border-light border-2 text-light hover:-translate-y-1 hover:bg-light hover:border-primary hover:text-primary transition-all duration-300 mt-4">
         </form>
     </div>
 </body>
