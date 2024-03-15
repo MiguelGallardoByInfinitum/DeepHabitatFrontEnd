@@ -21,7 +21,7 @@ if(!Session::has('username')) {
     </header>
     
     <div class="">
-        <form action={{ url('insertar') }} method="post" enctype="multipart/form-data" class="new-job-form h-96 rounded-xl shadow-md shadow-dark">
+        <form action={{ url('insertar') }} method="post" enctype="multipart/form-data" class="new-job-form h-96">
             @csrf
             <input type="text" name="name" placeholder="Name (Default is 'Job')" class="w-80 h-9 text-md text-primary p-2 bg-secondary rounded-lg drop-shadow-md focus:outline-none">
             <!-- <input type="url" name="url" placeholder="URL" required> -->
@@ -37,7 +37,7 @@ if(!Session::has('username')) {
                 <input type="file" name="attribute" accept="">
                 <label class="text-light text-xs">Enter the attribute taxonomy for your file (optional)</label>
             </div>
-            <input type="submit" name="insertar" value="Create Job" class="cursor-pointer bg-tertiary p-2 rounded-full border-light border-2 text-light hover:scale-110 hover:bg-light hover:border-tertiary hover:text-tertiary transition-all duration-200">
+            <input type="submit" name="insertar" value="Create Job" class="cursor-pointer bg-primary p-2 rounded-lg border-light border-2 text-light hover:-translate-y-1 hover:bg-light hover:border-primary hover:text-primary transition-all duration-300">
         </form>
     </div>
 </body>
