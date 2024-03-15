@@ -86,7 +86,7 @@ Route::post('/insertar', function (Request $request, JobController $jobControlle
     return redirect('/');
 });
 
-Route::post('/download', function (Request $request, JobController $getJob) {
+Route::post('/download', function (Request $request) {
     $petitionId = $request->input('petition_id');
 
     $url = "http://54.77.9.243:8008/get_enhanced_data?petition_id=$petitionId";
@@ -99,7 +99,8 @@ Route::post('/download', function (Request $request, JobController $getJob) {
         $datosRespuesta = $response->json();
         $status = $datosRespuesta['response']['status'];
         if($status == 'DONE') {
-            $enhancedDataUrls = $datosRespuesta['response']['enhanced_data_urls'];
+            $enhancedDataUrls = $datosRespuesta['response']['enhanced_data_urls'][0];
+            return redirect ($enhancedDataUrls);
         }
         info('Datos: ' . json_encode($datosRespuesta));
     } else {
