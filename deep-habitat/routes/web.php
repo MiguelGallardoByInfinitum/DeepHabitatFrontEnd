@@ -59,8 +59,8 @@ Route::post('/insertar', function (Request $request, JobController $jobControlle
     $name = $request->input('name');
     if($name == '') $name = 'Job';
     
-    // $file = $request->file('file');
-    // $fileContents = file_get_contents($file);
+    $file = $request->file('file');
+    $fileContents = file_get_contents($file);
 
     // // Construir los encabezados
     // $headers = [
@@ -72,29 +72,29 @@ Route::post('/insertar', function (Request $request, JobController $jobControlle
     // $httpRequest = Http::withHeaders($headers);
 
     // // Adjuntar el archivo al objeto de solicitud HTTP
-    // $httpRequest = $httpRequest->attach('master_data', $fileContents, $file->getClientOriginalName());
+    $httpRequest = Http::attach('master_data', $fileContents, $file->getClientOriginalName());
 
     // // Realizar la solicitud POST
-    // $response = $httpRequest->post('http://54.77.9.243:8008/upload_master_data');
+    $response = $httpRequest->post('http://54.77.9.243:8008/upload_master_data');
 
-    $url = 'http://54.77.9.243:8008/health';
+    //$url = 'http://54.77.9.243:8008/health';
 
-    $response = Http::get($url);
+    //$response = Http::get($url);
 
     // Verificar si la solicitud fue exitosa
     if ($response->successful()) {
         // La solicitud fue exitosa, puedes trabajar con la respuesta
         $datosRespuesta = $response->json();
+        $petitionId = $datosRespuesta['response']['petition_id'];
         // Haz algo con los datos de la respuesta
-        info('Datos: ' . $datosRespuesta);
+        info('Datos: ' . $petitionId);
+        $jobController->insertarJob($name, $petitionId);
     } else {
         // La solicitud no fue exitosa, maneja el error
         $mensajeError = $response->body();
         // Haz algo con el mensaje de error
         info('Error: ' . $mensajeError);
     }
-
-    // $jobController->insertarJob($name, $file);
 
     return redirect('/');
 });

@@ -12,16 +12,16 @@ CREATE TABLE IF NOT EXISTS users(
 );
 
 CREATE TABLE IF NOT EXISTS jobs(
-	id 		INT PRIMARY KEY auto_increment,
-    name	VARCHAR(255) DEFAULT 'Job',
-    url 	TEXT
+	id 			INT PRIMARY KEY auto_increment,
+    name		VARCHAR(255) DEFAULT 'Job',
+    petition_id INT
 );
 
 INSERT INTO users (username, password) VALUES ('Miguel', 'chimpy');
 INSERT INTO users (username, password) VALUES ('Guillem', 'gurex');
 
--- INSERT INTO jobs (name, url) VALUES ('Job', 'http://127.0.0.1:8000/new');
--- INSERT INTO jobs (name, url) VALUES ('Pero tio que increible', 'http://127.0.0.1:8000');
+-- INSERT INTO jobs (name, petition_id) VALUES ('Job', 3);
+-- INSERT INTO jobs (name, petition_id) VALUES ('Pero tio que increible', 17);
 
 SELECT * FROM users;
 SELECT * FROM jobs;
