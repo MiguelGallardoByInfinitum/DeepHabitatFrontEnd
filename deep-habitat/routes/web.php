@@ -110,11 +110,14 @@ Route::post('/download', function (Request $request) {
         $datosRespuesta = $response->json();
         $status = $datosRespuesta['response']['status'];
         if($status == 'DONE') {
-            $enhancedDataUrls = $datosRespuesta['response']['enhanced_data_urls'][0];
-            Session::forget('in_progress');
-            Session::forget('petition_id');
-
-            return redirect($enhancedDataUrls);
+            if(Session::has('in_progress')) {
+                Session::forget('in_progress');
+                Session::forget('petition_id');
+                return redirect('/');
+            } else {
+                $enhancedDataUrls = $datosRespuesta['response']['enhanced_data_urls'][0];
+                return redirect($enhancedDataUrls);
+            }
         }
     } else {
         // La solicitud no fue exitosa, maneja el error
