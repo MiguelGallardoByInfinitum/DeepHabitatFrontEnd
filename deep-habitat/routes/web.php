@@ -100,6 +100,7 @@ Route::post('/insertar', function (Request $request, JobController $jobControlle
 });
 
 Route::post('/download', function (Request $request) {
+    Session::forget('done');
     $petitionId = $request->input('petition_id');
 
     $url = "http://54.77.9.243:8008/get_enhanced_data?petition_id=$petitionId";
@@ -116,7 +117,7 @@ Route::post('/download', function (Request $request) {
 
             Session::forget('in_progress');
 
-            return redirect($enhancedDataUrls);
+            return redirect('/')->with('done', $enhancedDataUrls);
         }
         info('Datos: ' . json_encode($datosRespuesta));
     } else {
