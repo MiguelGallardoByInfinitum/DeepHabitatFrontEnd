@@ -100,7 +100,6 @@ Route::post('/insertar', function (Request $request, JobController $jobControlle
 });
 
 Route::post('/download', function (Request $request) {
-    Session::forget('done');
     $petitionId = $request->input('petition_id');
 
     $url = "http://54.77.9.243:8008/get_enhanced_data?petition_id=$petitionId";
@@ -115,9 +114,7 @@ Route::post('/download', function (Request $request) {
         if($status == 'DONE') {
             $enhancedDataUrls = $datosRespuesta['response']['enhanced_data_urls'][0];
 
-            Session::forget('in_progress');
-
-            return redirect('/')->with('done', $enhancedDataUrls);
+            return redirect($enhancedDataUrls)->with('in_progress', null)->with('hola', 'hola');
         }
         info('Datos: ' . json_encode($datosRespuesta));
     } else {
@@ -127,5 +124,5 @@ Route::post('/download', function (Request $request) {
         info('Error: ' . $mensajeError);
     }
 
-    return redirect('/')->with('in_progress', 'In Progress')->with('petition_id', $petitionId);
+    return redirect('/')->with('in_progress', 'In Progress')->with('petition_id', $petitionId)->with('done', null);
 });

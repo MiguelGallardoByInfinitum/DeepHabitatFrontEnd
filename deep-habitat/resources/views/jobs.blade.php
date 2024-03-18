@@ -4,11 +4,6 @@ if(!Session::has('username')) {
     header('Location: /login');
     exit();
 }
-
-if(Session::has('done')) {
-    header('Location: '. session('done'));
-    exit();
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
