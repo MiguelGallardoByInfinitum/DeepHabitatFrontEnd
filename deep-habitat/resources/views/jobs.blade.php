@@ -4,6 +4,12 @@ if(!Session::has('username')) {
     header('Location: /login');
     exit();
 }
+
+if (Session::has('enhanced_url')) {
+    $enhancedUrl = session('enhanced_url');
+    header("Location: $enhancedUrl");
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,9 +38,13 @@ if(!Session::has('username')) {
                     <form action={{ url('download') }} method="post">
                     @csrf
                         <input type="hidden" name="petition_id" value={{ $job->petition_id }}>
-                        <button class="job-btn" type="submit" name="download"><i class='bx bxs-cloud-download translate-y-0.5'></i> Download</button> 
+                        @if (session('in_progress') && session('petition_id') == $job->petition_id)
+                            <button class="job-btn" type="submit" name="download"><i class='bx bx-loader-alt bx-spin' ></i> {{ session('in_progress') }}</button>
+                        @endif
+                        @if (!session('in_progress') || session('petition_id') != $job->petition_id)
+                            <button class="job-btn" type="submit" name="download"><i class='bx bxs-cloud-download translate-y-0.5'></i> Download</button> 
+                        @endif
                     </form>
-                    <a class="job-btn" href={{ $job->url }}><i class='bx bx-loader-alt motion-reduce:hidden animate-spin'></i> In progress</a>
                 </div>
             @endforeach
         </div>

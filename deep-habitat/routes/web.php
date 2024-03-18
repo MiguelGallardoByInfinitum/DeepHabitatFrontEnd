@@ -51,19 +51,32 @@ Route::post('/login', function (Request $request, UserController $userController
         }
     }
 
-    return redirect('/login');
+    return redirect('/login')->with('no_login', 'Incorrect credentials. Try again.');
 });
 
 Route::post('/insertar', function (Request $request, JobController $jobController) {
 
     $name = $request->input('name');
-    if($name == '') $name = 'Job';
-    
+    if ($name == '') $name = 'Job';
+
     $file = $request->file('file');
     $fileContents = file_get_contents($file);
 
     // Adjuntar el archivo al objeto de solicitud HTTP
     $httpRequest = Http::attach('master_data', $fileContents, $file->getClientOriginalName());
+
+    $category = $request->file('category');
+    $attribute = $request->file('attribute');
+
+    if ($category) {
+        $categoryContents = file_get_contents($category);
+        $httpRequest = $httpRequest->attach('category_taxonomy', $categoryContents, $category->getClientOriginalName());
+    }
+
+    if ($attribute) {
+        $attributeContents = file_get_contents($attribute);
+        $httpRequest = $httpRequest->attach('attribute_taxonomy', $attributeContents, $attribute->getClientOriginalName());
+    }
 
     // Realizar la solicitud POST
     $response = $httpRequest->post('http://54.77.9.243:8008/upload_master_data');
@@ -100,7 +113,10 @@ Route::post('/download', function (Request $request) {
         $status = $datosRespuesta['response']['status'];
         if($status == 'DONE') {
             $enhancedDataUrls = $datosRespuesta['response']['enhanced_data_urls'][0];
-            return redirect ($enhancedDataUrls);
+
+            Session::forget('in_progress');
+
+            return redirect('/')->with('enhanced_url', $enhancedDataUrls);
         }
         info('Datos: ' . json_encode($datosRespuesta));
     } else {
@@ -110,5 +126,5 @@ Route::post('/download', function (Request $request) {
         info('Error: ' . $mensajeError);
     }
 
-    return redirect('/');
+    return redirect('/')->with('in_progress', 'In Progress')->with('petition_id', $petitionId);
 });

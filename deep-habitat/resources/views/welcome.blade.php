@@ -13,6 +13,9 @@
     </h1>
     <p class='text-1xl text-dark' data-aos="zoom-in-up" data-aos-delay="200">DeepHabitat API</p>
     <hr class="w-44 text-primary" data-aos="zoom-in-up" data-aos-delay="300">
+    @if (session('no_login'))
+      <p class="text-error" data-aos="zoom-in-up" data-aos-delay="400">{{ session('no_login') }}</p>
+    @endif
     <form action={{ url('login') }} method="post" class="flex flex-col justify-center items-center gap-3" data-aos="zoom-in-up" data-aos-delay="400">
         @csrf
         <input type="text" id="username" name="username" placeholder="Username here..." class="w-80 h-9 text-md text-primary p-2 bg-secondary rounded-lg drop-shadow-md focus:outline-none" required>
