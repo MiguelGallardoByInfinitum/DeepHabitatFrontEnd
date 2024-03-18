@@ -48,7 +48,7 @@ Route::post('/login', function (Request $request, UserController $userController
             Session::put('username', $username);
             return redirect('/');
         }
-    }
+    } 
 
     return redirect('/login')->with('no_login', 'Incorrect credentials. Try again.');
 });
