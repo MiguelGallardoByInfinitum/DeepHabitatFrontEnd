@@ -37,9 +37,9 @@ if(Session::has('done')) {
             @foreach($jobs->reverse() as $job)
                 <div class="job group" data-aos="fade-up">
                     <p class="job-text">{{ $job->id }}. {{ $job->name }}</p>
-                    <form action={{ url('download') }} method="post">
+                    <form action="{{ url('download') }}" method="post">
                     @csrf
-                        <input type="hidden" name="petition_id" value={{ $job->petition_id }}>
+                        <input type="hidden" name="petition_id" value="{{ $job->petition_id }}">
                         @if (session('in_progress') && session('petition_id') == $job->petition_id)
                             <button class="job-btn" type="submit" name="download"><i class='bx bx-loader-alt bx-spin' ></i> {{ session('in_progress') }}</button>
                         @endif
