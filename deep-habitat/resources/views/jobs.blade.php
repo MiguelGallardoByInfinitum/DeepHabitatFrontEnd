@@ -35,11 +35,11 @@ if(!Session::has('username')) {
                     <form action={{ url('download') }} method="post">
                     @csrf
                         <input type="hidden" name="petition_id" value={{ $job->petition_id }}>
-                        @if (!session('in_progress') || session('petition_id') != $job->petition_id)
-                            <button class="job-btn" type="submit" name="download"><i class='bx bxs-cloud-download translate-y-0.5'></i> Download</button> 
-                        @endif
                         @if (session('in_progress') && session('petition_id') == $job->petition_id)
                             <button class="job-btn" type="submit" name="download"><i class='bx bx-loader-alt bx-spin' ></i> {{ session('in_progress') }}</button>
+                        @endif
+                        @if (!session('in_progress') || session('petition_id') != $job->petition_id)
+                            <button class="job-btn" type="submit" name="download"><i class='bx bxs-cloud-download translate-y-0.5'></i> Download</button> 
                         @endif
                     </form>
                 </div>
