@@ -46,7 +46,6 @@ Route::post('/login', function (Request $request, UserController $userController
     
         if($usernameDB == $username && $passwordDB == $password){
             Session::put('username', $username);
-            info("Session");
             return redirect('/');
         }
     }
@@ -87,7 +86,6 @@ Route::post('/insertar', function (Request $request, JobController $jobControlle
         $datosRespuesta = $response->json();
         $petitionId = $datosRespuesta['response']['petition_id'];
         // Haz algo con los datos de la respuesta
-        info('Datos: ' . $petitionId);
         $jobController->insertarJob($name, $petitionId);
     } else {
         // La solicitud no fue exitosa, maneja el error
@@ -113,10 +111,11 @@ Route::post('/download', function (Request $request) {
         $status = $datosRespuesta['response']['status'];
         if($status == 'DONE') {
             $enhancedDataUrls = $datosRespuesta['response']['enhanced_data_urls'][0];
+            Session::forget('in_progress');
+            Session::forget('petition_id');
 
-            return redirect($enhancedDataUrls)->with('in_progress', null)->with('hola', 'hola');
+            return redirect($enhancedDataUrls);
         }
-        info('Datos: ' . json_encode($datosRespuesta));
     } else {
         // La solicitud no fue exitosa, maneja el error
         $mensajeError = $response->body();
@@ -124,5 +123,8 @@ Route::post('/download', function (Request $request) {
         info('Error: ' . $mensajeError);
     }
 
-    return redirect('/')->with('in_progress', 'In Progress')->with('petition_id', $petitionId)->with('done', null);
+    Session::put('in_progress', 'In Progress');
+    Session::put('petition_id', $petitionId);
+
+    return redirect('/');
 });
