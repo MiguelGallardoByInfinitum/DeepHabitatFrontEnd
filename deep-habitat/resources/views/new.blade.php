@@ -21,7 +21,7 @@ if(!Session::has('username')) {
     </header>
     
     <div class="">
-        <form action={{ url('insertar') }} method="post" enctype="multipart/form-data" class="new-job-form h-96">
+        <form action="{{ url('insertar') }}" method="post" enctype="multipart/form-data" class="new-job-form h-96">
             @csrf
             <input type="text" name="name" placeholder="Job Name (Default is 'Job')" class="w-80 h-10 text-md text-primary p-2 bg-secondary rounded-lg focus:outline-none border-[1px] border-primary2">
             <div>
