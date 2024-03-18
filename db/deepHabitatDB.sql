@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS jobs(
 INSERT INTO users (username, password) VALUES ('Miguel', 'chimpy');
 INSERT INTO users (username, password) VALUES ('Guillem', 'gurex');
 
--- INSERT INTO jobs (name, petition_id) VALUES ('Job', 3);
+-- INSERT INTO jobs (name, petition_id) VALUES ('Garp4', 27);
 -- INSERT INTO jobs (name, petition_id) VALUES ('Pero tio que increible', 17);
 
 SELECT * FROM users;

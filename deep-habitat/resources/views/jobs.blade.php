@@ -4,12 +4,6 @@ if(!Session::has('username')) {
     header('Location: /login');
     exit();
 }
-
-if (Session::has('enhanced_url')) {
-    $enhancedUrl = session('enhanced_url');
-    header("Location: $enhancedUrl");
-    exit;
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">

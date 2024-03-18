@@ -116,7 +116,7 @@ Route::post('/download', function (Request $request) {
 
             Session::forget('in_progress');
 
-            return redirect('/')->with('enhanced_url', $enhancedDataUrls);
+            return redirect($enhancedDataUrls);
         }
         info('Datos: ' . json_encode($datosRespuesta));
     } else {
