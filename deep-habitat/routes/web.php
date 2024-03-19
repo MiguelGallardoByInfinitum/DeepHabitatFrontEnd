@@ -116,7 +116,6 @@ Route::post('/download', function (Request $request) {
         // La solicitud fue exitosa, puedes trabajar con la respuesta
         $datosRespuesta = $response->json();
         $status = $datosRespuesta['response']['status'];
-        $status = 'ERROR';
         if ($status == 'DONE') {
             if(Session::has('in_progress')) {
                 Session::forget('in_progress');
