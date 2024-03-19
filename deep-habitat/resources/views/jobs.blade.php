@@ -36,7 +36,11 @@ if(!Session::has('username')) {
                         @csrf
                         <input type="hidden" name="petition_id" value="{{ $job->petition_id }}">
                         @if(Session::has('in_progress') && Session::get('petition_id') == $job->petition_id)
+                            @if(Session::has('error'))
+                            <p class="absolute text-error -translate-x-20 translate-y-1"><i class='bx bx-error translate-y-0.5'></i> Error</p>
+                            @else
                             <p class="absolute text-primary2 -translate-x-28 translate-y-1"><i class='bx bx-loader-alt bx-spin'></i> In progress</p>
+                            @endif
                             <button class='job-btn' type='submit' name='download'><i class='bx bxs-show'></i> Check Status</button>
                         @elseif(!Session::has('in_progress') || Session::get('petition_id') != $job->petition_id)
                             <button class='job-btn' type='submit' name='download'><i class='bx bxs-cloud-download translate-y-0.5'></i> Download</button>

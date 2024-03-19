@@ -27,14 +27,23 @@ if(!Session::has('username')) {
             <div>
                 <label class="text-dark text-xs opacity-60">Enter your csv or xlsx here</label>
                 <input type="file" name="file" accept=".csv, .xlsx" required class="text-primary2 file:text-primary file:bg-primaryShaded file:border-0 file: file:rounded-lg file:py-2 file:px-4 file:font-semibold file:text-sm transition-all duration-300 cursor-pointer file:hover:opacity-70 mt-2 file:cursor-pointer">
+                @if (session('file_error'))
+                    <label class="text-error">Invalid file extension</label>
+                @endif
             </div>
             <div>
                 <label class="text-dark text-xs opacity-60">Enter the category taxonomy for your file (optional)</label>
                 <input type="file" name="category" accept=".csv, .xlsx" class="text-primary2 file:text-primary file:bg-primaryShaded file:border-0 file: file:rounded-lg file:py-2 file:px-4 file:font-semibold file:text-sm transition-all duration-300 cursor-pointer file:hover:opacity-70 mt-2 file:cursor-pointer">
+                @if (session('category_error'))
+                    <label class="text-error">Invalid category file extension</label>
+                @endif
             </div>
             <div>
                 <label class="text-dark text-xs opacity-60">Enter the attribute taxonomy for your file (optional)</label>
                 <input type="file" name="attribute" accept=".csv, .xlsx" class="text-primary2 file:text-primary file:bg-primaryShaded file:border-0 file: file:rounded-lg file:py-2 file:px-4 file:font-semibold file:text-sm transition-all duration-300 cursor-pointer file:hover:opacity-70 mt-2 file:cursor-pointer">
+                @if (session('attribute_error'))
+                    <label class="text-error">Invalid attribute file extension</label>
+                @endif
             </div>
             <input type="submit" name="insertar" value="Create Job" class="cursor-pointer bg-primary p-2 rounded-lg border-light border-2 text-light hover:-translate-y-1 hover:bg-light hover:border-primary hover:text-primary transition-all duration-300 mt-4">
         </form>

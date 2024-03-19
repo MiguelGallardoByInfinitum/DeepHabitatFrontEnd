@@ -60,6 +60,8 @@ Route::post('/insertar', function (Request $request, JobController $jobControlle
 
     $file = $request->file('file');
     $fileContents = file_get_contents($file);
+    $fileExtension = $file->getClientOriginalExtension();
+    if ($fileExtension !== 'csv' && $fileExtension !== 'xlsx') return redirect('/new')->with('file_error', 'Invalid file extension');
 
     // Adjuntar el archivo al objeto de solicitud HTTP
     $httpRequest = Http::attach('master_data', $fileContents, $file->getClientOriginalName());
@@ -69,11 +71,15 @@ Route::post('/insertar', function (Request $request, JobController $jobControlle
 
     if ($category) {
         $categoryContents = file_get_contents($category);
+        $categoryExtension = $category->getClientOriginalExtension();
+        if ($categoryExtension !== 'csv' && $categoryExtension !== 'xlsx') return redirect('/new')->with('category_error', 'Invalid category extension');
         $httpRequest = $httpRequest->attach('category_taxonomy', $categoryContents, $category->getClientOriginalName());
     }
 
     if ($attribute) {
         $attributeContents = file_get_contents($attribute);
+        $attributeExtension = $attribute->getClientOriginalExtension();
+        if ($attributeExtension !== 'csv' && $attributeExtension !== 'xlsx') return redirect('/new')->with('attribute_error', 'Invalid attribute extension');
         $httpRequest = $httpRequest->attach('attribute_taxonomy', $attributeContents, $attribute->getClientOriginalName());
     }
 
@@ -99,6 +105,7 @@ Route::post('/insertar', function (Request $request, JobController $jobControlle
 
 Route::post('/download', function (Request $request) {
     $petitionId = $request->input('petition_id');
+    Session::put('petition_id', $petitionId);
 
     $url = "http://54.77.9.243:8008/get_enhanced_data?petition_id=$petitionId";
 
@@ -109,15 +116,19 @@ Route::post('/download', function (Request $request) {
         // La solicitud fue exitosa, puedes trabajar con la respuesta
         $datosRespuesta = $response->json();
         $status = $datosRespuesta['response']['status'];
-        if($status == 'DONE') {
+        $status = 'ERROR';
+        if ($status == 'DONE') {
             if(Session::has('in_progress')) {
                 Session::forget('in_progress');
                 Session::forget('petition_id');
+                Session::forget('error');
                 return redirect('/');
             } else {
                 $enhancedDataUrls = $datosRespuesta['response']['enhanced_data_urls'][0];
                 return redirect($enhancedDataUrls);
             }
+        } else if ($status == 'ERROR') {
+            Session::put('error', 'Error');
         }
     } else {
         // La solicitud no fue exitosa, maneja el error
@@ -127,7 +138,6 @@ Route::post('/download', function (Request $request) {
     }
 
     Session::put('in_progress', 'In Progress');
-    Session::put('petition_id', $petitionId);
 
     return redirect('/');
 });
