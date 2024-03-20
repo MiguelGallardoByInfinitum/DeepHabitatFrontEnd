@@ -145,17 +145,27 @@ Route::post('/register', function (Request $request, UserController $userControl
     $username = $request->input('username');
     $password = password_hash($request->input('password'), PASSWORD_DEFAULT);
     $passwordR = $request->input('passwordR');
-
+    
     $verify = password_verify($passwordR, $password);
 
     info($password);
     info($passwordR);
 
+    $usuarios = $userController->obtenerUsuarios();
+    
+    foreach($usuarios['usuarios'] as $usuario) {
+        $usernameDB = $usuario->username;
+    
+        if($usernameDB == $username){
+            return redirect('/addUsers')->with('notSamePwd', NULL)->with('userCreated', NULL)->with('userExists', 'User already exists');
+        }
+    } 
+
     if (!$verify) {
-        return redirect('/addUsers')->with('notSamePwd', 'Password must be the same')->with('userCreated', NULL);
+        return redirect('/addUsers')->with('notSamePwd', 'Password must be the same')->with('userCreated', NULL)->with('userExists', NULL);
     }
 
     $userController->añadirUsuarios($username, $password);
 
-    return redirect('/addUsers')->with('userCreated', 'The user has been created in the database')->with('notSamePwd', NULL);
+    return redirect('/addUsers')->with('userCreated', 'User created successfully')->with('notSamePwd', NULL)->with('userExists', NULL);
 });

@@ -23,17 +23,19 @@ if(!Session::has('username')) {
     Register a new User
     </h1>
     @if (session('notSamePwd'))
-    <p class="text-error" data-aos="zoom-in-up" data-aos-delay="400">{{ session('notSamePwd') }}</p>
+    <p class="text-error" data-aos="zoom-in-up" data-aos-delay="200"><i class='bx bxs-error'></i> {{ session('notSamePwd') }} <i class='bx bxs-error'></i></p>
     @elseif (session('userCreated'))
-    <p class="text-created" data-aos="zoom-in-up" data-aos-delay="400">{{ session('userCreated') }}</p>
+    <p class="text-created" data-aos="zoom-in-up" data-aos-delay="200"><i class='bx bx-check-circle' ></i> {{ session('userCreated') }} <i class='bx bx-check-circle' ></i></p>
+    @elseif (session('userExists'))
+    <p class="text-error" data-aos="zoom-in-up" data-aos-delay="200"><i class='bx bxs-error'></i> {{ session('userExists') }} <i class='bx bxs-error'></i></p>
     @endif
     <hr class="w-44 text-primary" data-aos="zoom-in-up" data-aos-delay="300">
-    <form action={{ url('register') }} method="post" class="flex flex-col justify-center items-center gap-3" data-aos="zoom-in-up" data-aos-delay="400">
+    <form action="{{ url('register') }}" method="post" class="flex flex-col justify-center items-center gap-3" data-aos="zoom-in-up" data-aos-delay="400">
         @csrf
         <input type="text" id="username" name="username" placeholder="Username here..." class="w-80 h-9 text-md text-primary p-2 bg-secondary rounded-lg drop-shadow-md focus:outline-none" required>
         <input type="password" id="password" name="password" placeholder="Password here..." class="w-80 h-9 text-md text-primary p-2 bg-secondary rounded-lg drop-shadow-md focus:outline-none" required>
         <input type="password" id="passwordR" name="passwordR" placeholder="Repeat password here..." class="w-80 h-9 text-md text-primary p-2 bg-secondary rounded-lg drop-shadow-md focus:outline-none" required>
-        <input type="submit" id="login" name="login" value="Log In" class="mt-3 p-1 w-32 rounded-lg cursor-pointer duration-300 hover:-translate-y-1 transition-all bg-primary text-secondary border-2 border-primary hover:bg-secondary hover:text-primary drop-shadow-md select-none">
+        <input type="submit" id="login" name="login" value="Register" class="mt-3 p-1 w-32 rounded-lg cursor-pointer duration-300 hover:-translate-y-1 transition-all bg-primary text-secondary border-2 border-primary hover:bg-secondary hover:text-primary drop-shadow-md select-none">
     </form>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
