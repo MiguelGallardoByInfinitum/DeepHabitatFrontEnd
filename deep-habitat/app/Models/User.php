@@ -10,23 +10,12 @@ class User extends Model
 
     protected $primaryKey = 'id';
 
-    public $incrementing = false;
-
-    protected $keyType = 'string';
+    public $timestamps = false;
 
     protected $fillable = [
         'username',
         'password',
     ];
-
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($model) {
-            $model->{$model->getKeyName()} = \Ramsey\Uuid\Uuid::uuid4()->toString();
-        });
-    }
 }
 
 

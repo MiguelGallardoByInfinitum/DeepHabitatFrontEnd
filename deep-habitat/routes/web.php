@@ -29,16 +29,22 @@ Route::get('/new', function () {
     return view('new');
 });
 
+Route::get('/addUsers', function () {
+    return view('register');
+});
+
 Route::post('/login', function (Request $request, UserController $userController) {
     $username = $request->input('username');
-    $password = hash('sha256', $request->input('password'));
+    $password = $request->input('password');
     $usuarios =  $userController->obtenerUsuarios();
 
     foreach ($usuarios['usuarios'] as $usuario) {
         $usernameDB = $usuario->username;
         $passwordDB = $usuario->password;
+
+        $verify_password = password_verify($password, $passwordDB);
     
-        if($usernameDB == $username && $passwordDB == $password){
+        if($usernameDB == $username && $verify_password){
             Session::put('username', $username);
             return redirect('/');
         }
@@ -133,4 +139,23 @@ Route::post('/download', function (Request $request) {
     Session::put('in_progress', 'In Progress');
 
     return redirect('/');
+});
+
+Route::post('/register', function (Request $request, UserController $userController) {
+    $username = $request->input('username');
+    $password = password_hash($request->input('password'), PASSWORD_DEFAULT);
+    $passwordR = $request->input('passwordR');
+
+    $verify = password_verify($passwordR, $password);
+
+    info($password);
+    info($passwordR);
+
+    if (!$verify) {
+        return redirect('/addUsers')->with('notSamePwd', 'Password must be the same')->with('userCreated', NULL);
+    }
+
+    $userController->añadirUsuarios($username, $password);
+
+    return redirect('/addUsers')->with('userCreated', 'The user has been created in the database')->with('notSamePwd', NULL);
 });

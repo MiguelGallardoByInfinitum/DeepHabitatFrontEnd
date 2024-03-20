@@ -17,7 +17,8 @@ export default {
       dark: 'rgb(var(--color-dark))',
       gray: 'rgb(var(--color-gray))',
       primaryShaded: 'rgb(var(--color-primary-shaded))',
-      error: 'rgb(var(--color-error))'
+      error: 'rgb(var(--color-error))',
+      created: 'rgb(var(--color-created))'
     },
     extend: {},
   },

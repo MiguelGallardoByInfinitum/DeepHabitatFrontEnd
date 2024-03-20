@@ -17,26 +17,8 @@ CREATE TABLE IF NOT EXISTS jobs(
     petition_id INT
 );
 
-INSERT INTO users (username, password) VALUES ('jordi', 'j0rdi.2024');
+INSERT INTO users (username, password) VALUES ('Miguel', 'chimpy');
 -- INSERT INTO users (username, password) VALUES ('Guillem', 'gurex');
 
 SELECT * FROM users;
 SELECT * FROM jobs;
-
-DELIMITER //
-
-CREATE FUNCTION hash_password(input_password VARCHAR(255)) 
-RETURNS VARCHAR(255)
-DETERMINISTIC
-BEGIN
-    DECLARE hashed_password VARCHAR(255);
-    SET hashed_password = PASSWORD(input_password);
-    RETURN hashed_password;
-END;
-//
-DELIMITER ;
-
-
-CREATE TRIGGER before_insert_users BEFORE INSERT ON users
-FOR EACH ROW
-SET NEW.password = hash_password(NEW.password);

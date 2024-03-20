@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
-use Illuminate\Support\Facades\Http;
 
 class JobController extends Controller
 {
