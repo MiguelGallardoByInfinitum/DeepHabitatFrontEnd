@@ -6,7 +6,7 @@ USE deepHabitatDB;
 -- DROP TABLE IF EXISTS jobs;
 
 CREATE TABLE IF NOT EXISTS users(
-	id			BINARY(16) PRIMARY KEY DEFAULT (UUID_TO_BIN(UUID())),
+	id			INT PRIMARY KEY AUTO_INCREMENT,
     username 	VARCHAR(255) UNIQUE KEY,
     password 	VARCHAR(255)
 );
@@ -17,11 +17,26 @@ CREATE TABLE IF NOT EXISTS jobs(
     petition_id INT
 );
 
-INSERT INTO users (username, password) VALUES ('Miguel', 'chimpy');
-INSERT INTO users (username, password) VALUES ('Guillem', 'gurex');
-
--- INSERT INTO jobs (name, petition_id) VALUES ('Garpe4', 27);
--- INSERT INTO jobs (name, petition_id) VALUES ('Pero tio que increible', 17);
+INSERT INTO users (username, password) VALUES ('jordi', 'j0rdi.2024');
+-- INSERT INTO users (username, password) VALUES ('Guillem', 'gurex');
 
 SELECT * FROM users;
 SELECT * FROM jobs;
+
+DELIMITER //
+
+CREATE FUNCTION hash_password(input_password VARCHAR(255)) 
+RETURNS VARCHAR(255)
+DETERMINISTIC
+BEGIN
+    DECLARE hashed_password VARCHAR(255);
+    SET hashed_password = PASSWORD(input_password);
+    RETURN hashed_password;
+END;
+//
+DELIMITER ;
+
+
+CREATE TRIGGER before_insert_users BEFORE INSERT ON users
+FOR EACH ROW
+SET NEW.password = hash_password(NEW.password);

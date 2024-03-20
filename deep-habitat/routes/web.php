@@ -31,18 +31,12 @@ Route::get('/new', function () {
 
 Route::post('/login', function (Request $request, UserController $userController) {
     $username = $request->input('username');
-    $password = $request->input('password');
-    info($username);
-    info($password);
-
+    $password = hash('sha256', $request->input('password'));
     $usuarios =  $userController->obtenerUsuarios();
-    info($usuarios);
 
     foreach ($usuarios['usuarios'] as $usuario) {
         $usernameDB = $usuario->username;
         $passwordDB = $usuario->password;
-        info($usernameDB);
-        info($passwordDB);
     
         if($usernameDB == $username && $passwordDB == $password){
             Session::put('username', $username);
