@@ -16,7 +16,7 @@
     @if (session('no_login'))
       <p class="text-error" data-aos="zoom-in-up" data-aos-delay="400">{{ session('no_login') }}</p>
     @endif
-    <form action={{ url('login') }} method="post" class="flex flex-col justify-center items-center gap-3" data-aos="zoom-in-up" data-aos-delay="400">
+    <form action="{{ url('login') }}" method="post" class="flex flex-col justify-center items-center gap-3" data-aos="zoom-in-up" data-aos-delay="400">
         @csrf
         <input type="text" id="username" name="username" placeholder="Username here..." class="w-80 h-9 text-md text-primary p-2 bg-secondary rounded-lg drop-shadow-md focus:outline-none" required>
         <input type="password" id="password" name="password" placeholder="Password here..." class="w-80 h-9 text-md text-primary p-2 bg-secondary rounded-lg drop-shadow-md focus:outline-none" required>
