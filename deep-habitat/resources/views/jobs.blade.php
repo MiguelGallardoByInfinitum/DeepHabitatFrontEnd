@@ -15,10 +15,10 @@ if(!Session::has('username')) {
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     @vite('resources/css/app.css')
 </head>
-<body class="">
+<body>
     <header class="flex justify-between items-center p-7">
         <div class="flex gap-4">
-        <img src="https://cdn-icons-png.flaticon.com/512/3177/3177440.png" alt="User-Icon" class="w-10 h-10 hue-rotate-90 grayscale-[20%] hidden md:block pointer-events-none select-none">
+        <img src="{{ asset('media/DeepHABITAT logo blue.png') }}" alt="Logo" class="w-16 pointer-events-none select-none">
             <h1 class=" text-2xl md:text-4xl font-bold text-primary">{{ Session::get('username') }}</h1>
         </div>
         <nav class="flex justify-center items-center gap-5">
