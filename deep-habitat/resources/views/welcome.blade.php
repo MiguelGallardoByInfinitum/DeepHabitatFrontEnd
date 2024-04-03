@@ -8,7 +8,7 @@
   @vite('resources/css/app.css')
 </head>
 <body class="min-h-screen flex justify-center items-center flex-col gap-5 selection:bg-red-400 selection:text-light selection:bg-primarySelection bg-secondary">    
-<img src="{{ asset('media/DeepHABITAT Logo Black.png') }}" data-aos="zoom-in-up" alt="DeepHABITAT Logo" class="w-24 absolute md:top-5 md:left-5 top-10 cursor-pointer transition-all duration-300 opacity-30 hover:opacity-100">
+<img src="{{ asset('media/DeepHABITAT Logo Black.png') }}" alt="DeepHABITAT Logo" class="w-24 absolute md:top-5 md:left-5 top-10 cursor-pointer transition-all duration-500 opacity-30 hover:opacity-100">
 <h1 class="text-3xl font-bold capitalize drop-shadow-md shadow-red-200 text-primary" data-aos="zoom-in-up" data-aos-delay="100">
     Sign in to your account
     </h1>
