@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS jobs(
     petition_id INT
 );
 
-INSERT INTO users (username, password) VALUES ('Miguel', 'chimpy');
+INSERT INTO users (username, password) VALUES ('admin', '$2y$10$l80NkVh0SkZgXTAK9sn2nOwbE0w2Uw5g55PwPd1JjLzwTxrnzwAA.');
 -- INSERT INTO users (username, password) VALUES ('Guillem', 'gurex');
 
 SELECT * FROM users;
