@@ -19,7 +19,7 @@ if(!Session::has('username')) {
     <header class="flex justify-between items-center p-7">
         <div class="flex gap-4">
         <img src="{{ asset('media/DeepHABITAT logo blue.png') }}" alt="Logo" class="w-16 pointer-events-none select-none md:block hidden">
-            <h1 class=" text-2xl md:text-4xl font-bold text-primary md:block hidden">{{ Session::get('username') }}</h1>
+            <h1 class=" text-2xl md:text-4xl font-thin text-primary md:block hidden">{{ Session::get('username') }}</h1>
         </div>
         <nav class="flex justify-center items-center gap-5">
             <a href="/addUsers" class="bg-primary text-light p-2 rounded-md drop-shadow-lg hover:-translate-y-1 transition-all duration-300 select-none"><i class='bx bxs-user-plus translate-y-0.5'></i> Add Users</a>
