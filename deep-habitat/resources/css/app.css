@@ -4,18 +4,22 @@
 
 @layer base {
     :root {
-        --color-primary: 222 49 99;
+        --color-primary: 56 149 255;
         --color-primary2: 179 182 183;
-        --color-primarySelection: 255 120 159;
+        --color-primarySelection: 62 154 255;
         --color-secondary: 248 249 249;
         --color-tertiary: 191 5 107;
         --color-light: 255 255 255;
         --color-dark: 0 0 0;
         --color-gray: 229 232 232;
-        --color-primary-shaded: 248 214 224;
+        --color-primary-shaded: 215 234 255;
         --color-error: 255 44 44;
         --color-created: 84 222 82;
     }
+}
+
+* {
+    @apply selection:text-light selection:bg-primarySelection;
 }
 
 .job {
