@@ -17,7 +17,7 @@ if(!Session::has('username')) {
 </head>
 <body>
     <header class="flex justify-between items-center p-7">
-        <div class="flex gap-4">
+        <div class="flex gap-4 items-center">
         <img src="{{ asset('media/DeepHABITAT logo blue.png') }}" alt="Logo" class="w-16 pointer-events-none select-none md:block hidden">
             <h1 class=" text-2xl md:text-4xl font-thin text-primary md:block hidden">{{ Session::get('username') }}</h1>
         </div>
