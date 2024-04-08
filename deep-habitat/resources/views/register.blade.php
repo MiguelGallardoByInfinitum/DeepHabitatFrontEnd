@@ -13,7 +13,7 @@ if(!Session::has('username')) {
     <title>Jobs</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="icon" href="{{ asset('media/DeepHABITAT Logo white.png') }}">
+    <link rel="icon" href="{{ asset('media/DeepHABITAT logo blue.png') }}">
     @vite('resources/css/app.css')
 </head>
 <body class="min-h-screen flex justify-center items-center flex-col gap-5 selection:bg-red-400 selection:text-light selection:bg-primarySelection bg-secondary">
