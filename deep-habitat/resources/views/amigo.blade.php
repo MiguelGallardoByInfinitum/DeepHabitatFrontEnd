@@ -8,6 +8,7 @@
 <body>
     <form action="{{ url('/upload-files') }}" method="POST" enctype="multipart/form-data">
         @csrf
+        <input type="file" name="manuel" required>
         <input type="file" name="files[]" multiple>
         <button type="submit">Subir archivos</button>
     </form>

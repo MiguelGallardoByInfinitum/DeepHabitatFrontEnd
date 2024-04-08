@@ -11,6 +11,7 @@ if(!Session::has('username')) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="icon" href="{{ asset('media/DeepHABITAT Logo white.png') }}">
     <title>New Job</title>
     @vite('resources/css/app.css')
 </head>
@@ -33,7 +34,7 @@ if(!Session::has('username')) {
             </div>
             <div>
                 <label class="text-dark text-xs opacity-60">Enter the knowledge files (optional)</label>
-                <input type="file" name="knowledge[]" accept=".csv" class="text-primary2 file:text-primary file:bg-primaryShaded file:border-0 file: file:rounded-lg file:py-2 file:px-4 file:font-semibold file:text-sm transition-all duration-300 cursor-pointer file:hover:opacity-70 mt-2 file:cursor-pointer">
+                <input type="file" name="knowledge[]" accept=".csv" multiple class="text-primary2 file:text-primary file:bg-primaryShaded file:border-0 file: file:rounded-lg file:py-2 file:px-4 file:font-semibold file:text-sm transition-all duration-300 cursor-pointer file:hover:opacity-70 mt-2 file:cursor-pointer">
                 @if (session('knowledge_error'))
                     <label class="text-error">Invalid knowledge file extension</label>
                 @endif

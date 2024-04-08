@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="icon" href="{{ asset('media/DeepHABITAT Logo white.png') }}">
   <title>Login</title>
   @vite('resources/css/app.css')
 </head>
