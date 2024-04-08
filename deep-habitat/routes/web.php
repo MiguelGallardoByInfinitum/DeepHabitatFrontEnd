@@ -98,7 +98,7 @@ Route::post('/insertar', function (Request $request, JobController $jobControlle
         foreach ($request->file('knowledge') as $knowledgeFile) {
             $knowledgeContents = file_get_contents($knowledgeFile);
             $knowledgeFilename = $knowledgeFile->getClientOriginalName();
-            $httpRequest = $httpRequest->attach('knowledge_base[]', $knowledgeContents, $knowledgeFilename);
+            $httpRequest = $httpRequest->attach('knowledge_base', $knowledgeContents, $knowledgeFilename);
         }
     }
 
