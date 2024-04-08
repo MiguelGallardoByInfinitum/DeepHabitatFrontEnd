@@ -34,33 +34,6 @@ Route::get('/addUsers', function () {
     return view('register');
 });
 
-Route::get('/amigo', function () {
-    return view('amigo');
-});
-
-Route::post('/upload-files', function (Request $request) {
-    info('Buenas1');
-
-    // Procesamiento de archivos
-    if ($request->hasFile('files')) {
-        $uploadedFiles = [];
-
-        foreach ($request->file('files') as $file) {
-            // Guarda el archivo en la carpeta deseada (por ejemplo, storage/app/uploads)
-            $path = $file->store('uploads');
-            // Almacena el nombre original del archivo
-            $uploadedFiles[] = $file->getClientOriginalName();
-        }
-
-        info('Archivos cargados:', $uploadedFiles);
-
-        return redirect('amigo')->with(['uploadedFiles' => $uploadedFiles]);
-    } else {
-        info('No se ha seleccionado ningún archivo');
-        return 'No se ha seleccionado ningún archivo';
-    }
-})->name('upload.files');
-
 Route::post('/login', function (Request $request, UserController $userController) {
     $username = $request->input('username');
     $password = $request->input('password');
