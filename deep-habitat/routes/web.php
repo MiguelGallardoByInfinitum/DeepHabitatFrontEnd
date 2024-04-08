@@ -95,34 +95,12 @@ Route::post('/insertar', function (Request $request, JobController $jobControlle
     $httpRequest = Http::attach('master_data', $fileContents, $file->getClientOriginalName());
 
     if ($request->hasFile('knowledge')) {
-        $knowledgeContents = [];
-
         foreach ($request->file('knowledge') as $knowledgeFile) {
-            $knowledgeContents[] = [
-                'name' => 'knowledge_base[]',
-                'contents' => file_get_contents($knowledgeFile),
-                'filename' => $knowledgeFile->getClientOriginalName()
-            ];
+            $knowledgeContents = file_get_contents($knowledgeFile);
+            $knowledgeFilename = $knowledgeFile->getClientOriginalName();
+            $httpRequest = $httpRequest->attach('knowledge_base[]', $knowledgeContents, $knowledgeFilename);
         }
-
-        $httpRequest = $httpRequest->attach($knowledgeContents);
     }
-    /*$category = $request->file('category');
-    $attribute = $request->file('attribute');
-
-    if ($category) {
-        $categoryContents = file_get_contents($category);
-        $categoryExtension = $category->getClientOriginalExtension();
-        if ($categoryExtension !== 'csv' && $categoryExtension !== 'xlsx') return redirect('/new')->with('category_error', 'Invalid category extension');
-        $httpRequest = $httpRequest->attach('category_taxonomy', $categoryContents, $category->getClientOriginalName());
-    }
-
-    if ($attribute) {
-        $attributeContents = file_get_contents($attribute);
-        $attributeExtension = $attribute->getClientOriginalExtension();
-        if ($attributeExtension !== 'csv' && $attributeExtension !== 'xlsx') return redirect('/new')->with('attribute_error', 'Invalid attribute extension');
-        $httpRequest = $httpRequest->attach('attribute_taxonomy', $attributeContents, $attribute->getClientOriginalName());
-    }*/
 
     // Realizar la solicitud POST
     $response = $httpRequest->post('http://54.77.9.243:8008/upload_master_data');
