@@ -17,6 +17,12 @@ CREATE TABLE IF NOT EXISTS jobs(
     petition_id INT
 );
 
+CREATE TABLE IF NOT EXISTS moodboards(
+	id 				INT PRIMARY KEY auto_increment,
+    title 			VARCHAR(255) DEFAULT 'Moodboard',
+    moodboard_id 	INT
+);
+
 INSERT INTO users (username, password) VALUES ('admin', '$2y$10$l80NkVh0SkZgXTAK9sn2nOwbE0w2Uw5g55PwPd1JjLzwTxrnzwAA.');
 -- INSERT INTO users (username, password) VALUES ('Guillem', 'gurex');
 

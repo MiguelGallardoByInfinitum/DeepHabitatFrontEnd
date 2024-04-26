@@ -24,6 +24,9 @@ if(!Session::has('username')) {
     <div class="">
         <form action="{{ url('insertar') }}" method="post" enctype="multipart/form-data" class="new-job-form h-96">
             @csrf
+            @if (session('error_post'))
+                <label class="text-error">The petition has returned an error</label>
+            @endif
             <input type="text" name="name" placeholder="Job Name (Default is 'Job')" class="w-80 h-10 text-md text-primary p-2 bg-secondary rounded-lg focus:outline-none border-[1px] border-primary2">
             <div>
                 <label class="text-dark text-xs opacity-60">Enter your csv or xlsx here</label>

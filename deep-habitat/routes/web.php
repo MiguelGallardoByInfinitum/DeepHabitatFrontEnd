@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\MoodboardController;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -32,6 +33,12 @@ Route::get('/new', function () {
 
 Route::get('/addUsers', function () {
     return view('register');
+});
+
+Route::get('/moodboard', [MoodboardController::class, 'mostrarMoodboards']);
+
+Route::get('/newMoodboard', function() {
+    return view('newMoodboard');
 });
 
 Route::post('/login', function (Request $request, UserController $userController) {
@@ -69,6 +76,8 @@ Route::post('/insertar', function (Request $request, JobController $jobControlle
 
     if ($request->hasFile('knowledge')) {
         foreach ($request->file('knowledge') as $knowledgeFile) {
+            $knowledgeExtension = $knowledgeFile->getClientOriginalExtension();
+            if ($knowledgeExtension !== 'csv') return redirect('/new')->with('knowledge_error', 'Invalid knowledge extension');
             $knowledgeContents = file_get_contents($knowledgeFile);
             $knowledgeFilename = $knowledgeFile->getClientOriginalName();
             $httpRequest = $httpRequest->attach('knowledge_base', $knowledgeContents, $knowledgeFilename);
@@ -90,6 +99,8 @@ Route::post('/insertar', function (Request $request, JobController $jobControlle
         $mensajeError = $response->body();
         // Haz algo con el mensaje de error
         info('Error: ' . $mensajeError);
+
+        return redirect('/new')->with('error_post', 'Petition Error');
     }
 
     return redirect('/');
@@ -160,4 +171,104 @@ Route::post('/register', function (Request $request, UserController $userControl
     $userController->añadirUsuarios($username, $password);
 
     return redirect('/addUsers')->with('userCreated', 'User created successfully')->with('notSamePwd', NULL)->with('userExists', NULL);
+});
+
+Route::post('/insertarMoodboards', function (Request $request, MoodboardController $moodboardController) {
+    $moodboardTitle = $request->input('title');
+    
+    if(!isset($moodboardTitle)) {
+        $moodboardTitle = 'Moodboard';
+    }
+    
+    $canvasMode = $request->input('canvas');
+    $paletteMode = $request->input('palette');
+    $backgroundMode = $request->input('background');
+
+    $file = $request->file('file');
+    $fileContents = file_get_contents($file);
+    $fileExtension = $file->getClientOriginalExtension();
+    if ($fileExtension !== 'csv') return redirect('/moodboard')->with('file_error', 'Invalid file extension');
+
+    $httpRequest = Http::attach('item_csv', $fileContents, $file->getClientOriginalName());
+
+    if ($request->hasFile('images')) {
+        foreach ($request->file('images') as $image) {
+            $imageExtension = $image->getClientOriginalExtension();
+            info($imageExtension);
+            if ($imageExtension !== 'jpg' && $imageExtension !== 'jpeg' && $imageExtension !== 'png') return redirect('/newMoodboard')->with('image_error', 'Invalid image extension');
+            $imageContents = file_get_contents($image);
+            $imageName = $image->getClientOriginalName();
+            $httpRequest = $httpRequest->attach('item_images', $imageContents, $imageName);
+        }
+    }
+
+    info($moodboardTitle);
+    info($canvasMode);
+    info($paletteMode);
+    info($backgroundMode);
+    $post = 'http://54.77.9.243:8008/generate_moodboard?moodboard_title='. $moodboardTitle .'&canvas_mode='. $canvasMode .'&palette_mode='. $paletteMode .'&background_mode='. $backgroundMode;
+    $response = $httpRequest->post($post);
+
+    // Verificar si la solicitud fue exitosa
+    if ($response->successful()) {
+        // La solicitud fue exitosa, puedes trabajar con la respuesta
+        $datosRespuesta = $response->json();
+        info($datosRespuesta);
+        $moodboardId = $datosRespuesta['response']['moodboard_id'];
+        // Haz algo con los datos de la respuesta
+        $moodboardController->insertarMoodboard($moodboardTitle, $moodboardId);
+    } else {
+        // La solicitud no fue exitosa, maneja el error
+        $mensajeError = $response->body();
+        // Haz algo con el mensaje de error
+        info('Error: ' . $mensajeError);
+
+        return redirect('/newMoodboard')->with('error_post', 'Petition Error');
+    }
+
+    return redirect('/moodboard');
+});
+
+Route::post('/downloadMoodboard', function (Request $request) {
+    $moodboardId = $request->input('moodboard_id');
+    Session::put('moodboard_id', $moodboardId);
+
+    $url = "http://54.77.9.243:8008/get_moodboard?moodboard_id=$moodboardId";
+
+    $response = Http::get($url);
+
+    info($response);
+
+    // Verificar si la solicitud fue exitosa
+    if ($response->successful()) {
+        // La solicitud fue exitosa, puedes trabajar con la respuesta
+        $datosRespuesta = $response->json();
+        $response = $datosRespuesta['response'];
+        if (isset($manolo)) {
+            if(Session::has('in_progress')) {
+                Session::forget('in_progress');
+                Session::forget('moodboard_id');
+                Session::forget('error');
+                return redirect('/moodboard');
+            } else {
+                $moodboardUrl = $datosRespuesta['response']['moodboard_url'];
+                return redirect($moodboardUrl);
+            }
+        } else {
+            $detail = $datosRespuesta['detail'];
+            if (isset($detail) && $detail === 'Petition ' . $moodboardId . ' failed. Please retry the petition.') {
+                Session::put('error', 'Error');
+                return redirect('/moodboard');
+            }
+        }
+    } else {
+        // La solicitud no fue exitosa, maneja el error
+        $mensajeError = $response->body();
+        // Haz algo con el mensaje de error
+        info('Error: ' . $mensajeError);
+    }
+
+    Session::put('in_progress', 'In Progress');
+
+    return redirect('/moodboard');
 });
