@@ -249,7 +249,7 @@ Route::post('/insertarMoodboards', function (Request $request, MoodboardControll
     $file = $request->file('file');
     $fileContents = file_get_contents($file);
     $fileExtension = $file->getClientOriginalExtension();
-    if ($fileExtension !== 'csv') return redirect('/moodboard')->with('file_error', 'Invalid file extension');
+    if ($fileExtension !== 'csv') return redirect('/newMoodboard')->with('file_error', 'Invalid file extension');
 
     $httpRequest = Http::attach('item_csv', $fileContents, $file->getClientOriginalName());
 
@@ -262,6 +262,8 @@ Route::post('/insertarMoodboards', function (Request $request, MoodboardControll
             $imageName = $image->getClientOriginalName();
             $httpRequest = $httpRequest->attach('item_images', $imageContents, $imageName);
         }
+    } else {
+        return redirect('/newMoodboard')->with('empty_image', 'You must insert images');
     }
 
     info($moodboardTitle);
@@ -305,8 +307,7 @@ Route::post('/downloadMoodboard', function (Request $request) {
     if ($response->successful()) {
         // La solicitud fue exitosa, puedes trabajar con la respuesta
         $datosRespuesta = $response->json();
-        $response = $datosRespuesta['response'];
-        if (isset($response)) {
+        if (isset($datosRespuesta['response'])) {
             if(Session::has('in_progress')) {
                 Session::forget('in_progress');
                 Session::forget('moodboard_id');

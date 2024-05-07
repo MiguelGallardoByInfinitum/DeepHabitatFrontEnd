@@ -35,20 +35,24 @@ if(!Session::has('username')) {
             @foreach($moodboards->reverse() as $moodboard)
                 <div class="job group" data-aos="fade-up">
                     <p class="job-text">{{ $moodboard->id }}. {{ $moodboard->title }}</p>
-                    <form action="{{ url('downloadMoodboard') }}" method="post">
-                        @csrf
-                        <input type="hidden" name="moodboard_id" value="{{ $moodboard->moodboard_id }}">
+                    <div class="flex gap-2 md:gap-4 flex-wrap">
                         @if(Session::has('in_progress') && Session::get('moodboard_id') == $moodboard->moodboard_id)
                             @if(Session::has('error'))
                                 <p class="text-error text-xs md:text-lg translate-y-1"><i class='bx bx-error translate-y-0.5'></i> Error</p>
                             @else
                                 <p class="text-primary2 text-xs md:text-lg translate-y-1"><i class='bx bx-loader-alt bx-spin'></i> In progress</p>
                             @endif
-                            <button class='job-btn' type='submit' name='download'><i class='bx bxs-show'></i> Check Status</button>
-                        @elseif(!Session::has('in_progress') || Session::get('moodboard_id') != $moodboard->moodboard_id)
-                            <button class='job-btn' type='submit' name='download'><i class='bx bxs-cloud-download translate-y-0.5'></i> Download</button>
                         @endif
-                    </form>
+                        <form action="{{ url('downloadMoodboard') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="moodboard_id" value="{{ $moodboard->moodboard_id }}">
+                            @if(Session::has('in_progress') && Session::get('moodboard_id') == $moodboard->moodboard_id)
+                                <button class='job-btn' type='submit' name='download'><i class='bx bxs-show'></i> Check Status</button>
+                            @elseif(!Session::has('in_progress') || Session::get('moodboard_id') != $moodboard->moodboard_id)
+                                <button class='job-btn' type='submit' name='download'><i class='bx bxs-cloud-download translate-y-0.5'></i> Download</button>
+                            @endif
+                        </form>
+                    </div>
                 </div>
             @endforeach
         </div>
