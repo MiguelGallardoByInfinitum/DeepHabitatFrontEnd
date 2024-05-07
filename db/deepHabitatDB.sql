@@ -14,7 +14,8 @@ CREATE TABLE IF NOT EXISTS users(
 CREATE TABLE IF NOT EXISTS jobs(
 	id 			INT PRIMARY KEY auto_increment,
     name		VARCHAR(255) DEFAULT 'Job',
-    petition_id INT
+    petition_id INT,
+    description BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE IF NOT EXISTS moodboards(

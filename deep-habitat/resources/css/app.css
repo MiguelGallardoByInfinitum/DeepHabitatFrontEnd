@@ -23,7 +23,7 @@
 }
 
 .job {
-    @apply w-auto flex justify-between p-4 border-b-[1px] last:border-b-0 border-gray hover:bg-secondary  transition-all duration-300 hover:border-l-2 hover:border-l-primary;
+    @apply w-auto flex justify-between flex-wrap gap-4 p-4 border-b-[1px] last:border-b-0 border-gray hover:bg-secondary  transition-all duration-300 hover:border-l-2 hover:border-l-primary;
 }
 
 .job-text {
@@ -31,7 +31,7 @@
 }
 
 .job-btn {
-    @apply bg-primary text-light p-1 rounded-md hover:scale-105 transition-all duration-300 select-none;
+    @apply bg-primary text-light p-1 rounded-md hover:scale-105 transition-all duration-300 select-none text-xs md:text-lg;
 }
 
 .new-job-form {

@@ -85,7 +85,7 @@ Route::post('/insertar', function (Request $request, JobController $jobControlle
     }
 
     // Realizar la solicitud POST
-    $response = $httpRequest->post('http://54.77.9.243:8008/upload_master_data');
+    $response = $httpRequest->post('http://54.77.9.243:8008/enhance_master_data');
 
     // Verificar si la solicitud fue exitosa
     if ($response->successful()) {
@@ -93,7 +93,12 @@ Route::post('/insertar', function (Request $request, JobController $jobControlle
         $datosRespuesta = $response->json();
         $petitionId = $datosRespuesta['response']['petition_id'];
         // Haz algo con los datos de la respuesta
-        $jobController->insertarJob($name, $petitionId);
+        $descriptionSelect = $request->input('howPost');
+        if ($descriptionSelect === 'noDescription') {
+            $jobController->insertarJob($name, $petitionId, false);
+        } else {
+            $jobController->insertarJob($name, $petitionId, true);
+        }
     } else {
         // La solicitud no fue exitosa, maneja el error
         $mensajeError = $response->body();
@@ -118,8 +123,7 @@ Route::post('/download', function (Request $request) {
     if ($response->successful()) {
         // La solicitud fue exitosa, puedes trabajar con la respuesta
         $datosRespuesta = $response->json();
-        $status = $datosRespuesta['response']['status'];
-        if ($status == 'DONE') {
+        if (isset($datosRespuesta['response'])) {
             if(Session::has('in_progress')) {
                 Session::forget('in_progress');
                 Session::forget('petition_id');
@@ -129,8 +133,13 @@ Route::post('/download', function (Request $request) {
                 $enhancedDataUrls = $datosRespuesta['response']['enhanced_data_urls'][0];
                 return redirect($enhancedDataUrls);
             }
-        } else if ($status == 'ERROR') {
-            Session::put('error', 'Error');
+        } else {
+            $detail = $datosRespuesta['detail'];
+            info($detail);
+            if (isset($detail) && $detail !== 'Petition ' . $petitionId . ' is still processing.') {
+                Session::put('error', 'Error');
+                return redirect('/');
+            }
         }
     } else {
         // La solicitud no fue exitosa, maneja el error
@@ -140,6 +149,59 @@ Route::post('/download', function (Request $request) {
     }
 
     Session::put('in_progress', 'In Progress');
+
+    return redirect('/');
+});
+
+Route::post('/downloadDescription', function (Request $request) {
+    $petitionId = $request->input('petition_id');
+    Session::put('petition_id_description', $petitionId);
+
+    $url2 = "http://54.77.9.243:8008/enhance_data_with_descriptions?petition_id=$petitionId";
+
+    $responsePost = Http::post($url2);
+
+    if (isset($responsePost['detail'])) {
+        Session::put('master_data_processing', 'Master Data is still processing');
+        return redirect('/');
+    } else {
+        Session::forget('master_data_processing');
+
+        $url = "http://54.77.9.243:8008/get_enhanced_data_with_descriptions?petition_id=$petitionId";
+
+        $response = Http::get($url);
+
+        // Verificar si la solicitud fue exitosa
+        if ($response->successful()) {
+            // La solicitud fue exitosa, puedes trabajar con la respuesta
+            $datosRespuesta = $response->json();
+            if (isset($datosRespuesta['response'])) {
+                if(Session::has('in_progress_description')) {
+                    Session::forget('in_progress_description');
+                    Session::forget('petition_id_description');
+                    Session::forget('error_description');
+                    return redirect('/');
+                } else {
+                    $enhancedDataUrls = $datosRespuesta['response']['enhanced_data_urls'][0];
+                    return redirect($enhancedDataUrls);
+                }
+            } else {
+                $detail = $datosRespuesta['detail'];
+                info($detail);
+                if (isset($detail) && $detail !== 'Petition ' . $petitionId . ' is still processing.') {
+                    Session::put('error_description', 'Error');
+                    return redirect('/');
+                }
+            }
+        } else {
+            // La solicitud no fue exitosa, maneja el error
+            $mensajeError = $response->body();
+            // Haz algo con el mensaje de error
+            info('Error: ' . $mensajeError);
+        }
+
+        Session::put('in_progress_description', 'In Progress');
+    }
 
     return redirect('/');
 });
@@ -244,7 +306,7 @@ Route::post('/downloadMoodboard', function (Request $request) {
         // La solicitud fue exitosa, puedes trabajar con la respuesta
         $datosRespuesta = $response->json();
         $response = $datosRespuesta['response'];
-        if (isset($manolo)) {
+        if (isset($response)) {
             if(Session::has('in_progress')) {
                 Session::forget('in_progress');
                 Session::forget('moodboard_id');

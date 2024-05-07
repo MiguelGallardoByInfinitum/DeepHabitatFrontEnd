@@ -12,12 +12,13 @@ class JobController extends Controller
         return view('jobs', ['jobs' => $jobs]);
     }
 
-    public function insertarJob($name, $petitionId)
+    public function insertarJob($name, $petitionId, $description)
     {
         
         $job = new Job();
         $job->name = $name;
         $job->petition_id = $petitionId;
+        $job->description = $description;
         
 
         $job->save();

@@ -42,6 +42,13 @@ if(!Session::has('username')) {
                     <label class="text-error">Invalid knowledge file extension</label>
                 @endif
             </div>
+            <div class="flex flex-col items-start"> 
+                <label for="howPost" class="text-dark text-xs opacity-60">Select if you want the csv with description or not</label>
+                <select name="howPost" class="text-primary p-1 rounded-lg cursor-pointer focus:border-0 focus:outline-none active:border-0">
+                    <option value="noDescription">Without description</option>
+                    <option value="description">With description</option>
+                </select>
+            </div>
             <input type="submit" name="insertar" value="Create Job" class="cursor-pointer bg-primary p-2 rounded-lg border-light border-2 text-light hover:-translate-y-1 hover:bg-light hover:border-primary hover:text-primary transition-all duration-300 mt-4">
         </form>
     </div>

@@ -22,11 +22,11 @@ if(!Session::has('username')) {
         <img src="{{ asset('media/DeepHABITAT logo blue.png') }}" alt="Logo" class="w-16 pointer-events-none select-none md:block hidden">
             <h1 class=" text-2xl md:text-4xl font-thin text-primary md:block hidden">{{ Session::get('username') }}</h1>
         </div>
-        <nav class="flex justify-center items-center gap-5">
-            <a href="/" class="bg-tertiary text-light p-2 rounded-md drop-shadow-lg hover:-translate-y-1 transition-all duration-300 select-none"><i class='bx bx-file translate-y-0.5'></i> Jobs</a>
-            <a href="/addUsers" class="bg-primary text-light p-2 rounded-md drop-shadow-lg hover:-translate-y-1 transition-all duration-300 select-none"><i class='bx bxs-user-plus translate-y-0.5'></i> Add Users</a>
-            <a href="/newMoodboard" class="bg-primary text-light p-2 rounded-md drop-shadow-lg hover:-translate-y-1 transition-all duration-300 select-none"><i class='bx bx-plus translate-y-0.5'></i> New Moodboard</a>
-            <a href="/login" class="hover:-translate-y-1 transition-transform duration-300">Log Out</a>
+        <nav class="flex justify-center items-center gap-5 flex-wrap">
+            <a href="/" class="bg-tertiary text-light text-xs md:text-lg p-2 rounded-md drop-shadow-lg hover:-translate-y-1 transition-all duration-300 select-none"><i class='bx bx-file translate-y-0.5'></i> Jobs</a>
+            <a href="/addUsers" class="bg-primary text-light text-xs md:text-lg p-2 rounded-md drop-shadow-lg hover:-translate-y-1 transition-all duration-300 select-none"><i class='bx bxs-user-plus translate-y-0.5'></i> Add Users</a>
+            <a href="/newMoodboard" class="bg-primary text-light text-xs md:text-lg p-2 rounded-md drop-shadow-lg hover:-translate-y-1 transition-all duration-300 select-none"><i class='bx bx-plus translate-y-0.5'></i> New Moodboard</a>
+            <a href="/login" class="hover:-translate-y-1 text-xs md:text-lg transition-transform duration-300">Log Out</a>
         </nav>
     </header>
     <div class="flex justify-center items-start flex-col mr-7 ml-7 sm:mr-14 sm:ml-14 md:mr-36 md:ml-36 mt-10">
@@ -40,9 +40,9 @@ if(!Session::has('username')) {
                         <input type="hidden" name="moodboard_id" value="{{ $moodboard->moodboard_id }}">
                         @if(Session::has('in_progress') && Session::get('moodboard_id') == $moodboard->moodboard_id)
                             @if(Session::has('error'))
-                                <p class="absolute text-error -translate-x-20 translate-y-1"><i class='bx bx-error translate-y-0.5'></i> Error</p>
+                                <p class="text-error text-xs md:text-lg translate-y-1"><i class='bx bx-error translate-y-0.5'></i> Error</p>
                             @else
-                                <p class="absolute text-primary2 -translate-x-28 translate-y-1"><i class='bx bx-loader-alt bx-spin'></i> In progress</p>
+                                <p class="text-primary2 text-xs md:text-lg translate-y-1"><i class='bx bx-loader-alt bx-spin'></i> In progress</p>
                             @endif
                             <button class='job-btn' type='submit' name='download'><i class='bx bxs-show'></i> Check Status</button>
                         @elseif(!Session::has('in_progress') || Session::get('moodboard_id') != $moodboard->moodboard_id)
