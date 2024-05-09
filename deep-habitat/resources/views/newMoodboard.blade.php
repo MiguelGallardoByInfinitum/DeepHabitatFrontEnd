@@ -52,7 +52,7 @@ if(!Session::has('username')) {
             </div>
 
             <div>
-                <label class="text-dark text-xs opacity-60">Enter your csv here</label>
+                <label class="text-dark text-xs opacity-60">Enter your csv here (must contain image URLs or add images in the next input)</label>
                 <input type="file" name="file" accept=".csv" required class="text-primary2 file:text-primary file:bg-primaryShaded file:border-0 file: file:rounded-lg file:py-2 file:px-4 file:font-semibold file:text-sm transition-all duration-300 cursor-pointer file:hover:opacity-70 mt-2 file:cursor-pointer">
                 @if (session('file_error'))
                     <label class="text-error">Invalid file extension</label>
@@ -64,8 +64,6 @@ if(!Session::has('username')) {
                     <input type="file" name="images[]" accept=".jpg, .jpeg, .png" multiple class="text-primary2 file:text-primary file:bg-primaryShaded file:border-0 file: file:rounded-lg file:py-2 file:px-4 file:font-semibold file:text-sm transition-all duration-300 cursor-pointer file:hover:opacity-70 mt-2 file:cursor-pointers">
                     @if (session('image_error'))
                         <label class="text-error">Invalid item images</label>
-                    @elseif (session('empty_image'))
-                        <label class="text-error">You must insert images</label>
                     @endif
                 </div>
             </div>

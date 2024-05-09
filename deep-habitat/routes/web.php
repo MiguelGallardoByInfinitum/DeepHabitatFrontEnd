@@ -135,7 +135,7 @@ Route::post('/download', function (Request $request) {
             }
         } else {
             $detail = $datosRespuesta['detail'];
-            info($detail);
+
             if (isset($detail) && $detail !== 'Petition ' . $petitionId . ' is still processing.') {
                 Session::put('error', 'Error');
                 return redirect('/');
@@ -187,7 +187,7 @@ Route::post('/downloadDescription', function (Request $request) {
                 }
             } else {
                 $detail = $datosRespuesta['detail'];
-                info($detail);
+
                 if (isset($detail) && $detail !== 'Petition ' . $petitionId . ' is still processing.') {
                     Session::put('error_description', 'Error');
                     return redirect('/');
@@ -212,9 +212,6 @@ Route::post('/register', function (Request $request, UserController $userControl
     $passwordR = $request->input('passwordR');
     
     $verify = password_verify($passwordR, $password);
-
-    info($password);
-    info($passwordR);
 
     $usuarios = $userController->obtenerUsuarios();
     
@@ -256,20 +253,14 @@ Route::post('/insertarMoodboards', function (Request $request, MoodboardControll
     if ($request->hasFile('images')) {
         foreach ($request->file('images') as $image) {
             $imageExtension = $image->getClientOriginalExtension();
-            info($imageExtension);
+
             if ($imageExtension !== 'jpg' && $imageExtension !== 'jpeg' && $imageExtension !== 'png') return redirect('/newMoodboard')->with('image_error', 'Invalid image extension');
             $imageContents = file_get_contents($image);
             $imageName = $image->getClientOriginalName();
             $httpRequest = $httpRequest->attach('item_images', $imageContents, $imageName);
         }
-    } else {
-        return redirect('/newMoodboard')->with('empty_image', 'You must insert images');
     }
 
-    info($moodboardTitle);
-    info($canvasMode);
-    info($paletteMode);
-    info($backgroundMode);
     $post = 'http://54.77.9.243:8008/generate_moodboard?moodboard_title='. $moodboardTitle .'&canvas_mode='. $canvasMode .'&palette_mode='. $paletteMode .'&background_mode='. $backgroundMode;
     $response = $httpRequest->post($post);
 
